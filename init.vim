@@ -24,6 +24,7 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'Yggdroot/indentLine'
   Plug 'airblade/vim-gitgutter'
   Plug 'scrooloose/nerdcommenter'
+  Plug 'mattn/emmet-vim'
 
 call plug#end()
 
