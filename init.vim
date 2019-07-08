@@ -14,8 +14,10 @@ call plug#begin('~/.config/nvim/bundle')
 
   Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle'  }
   Plug 'sheerun/vim-polyglot'
+
   Plug 'dracula/vim', { 'as': 'dracula' }
   Plug 'tomasr/molokai'
+
   Plug 'jeffkreeftmeijer/vim-numbertoggle'
   Plug 'terryma/vim-multiple-cursors'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -69,7 +71,10 @@ set shiftwidth=2
 set guifont=Monaco\ for\ Powerline:h12
 
 " COLOR SCHEME
-color dracula
+" color dracula
+colorscheme molokai
+set termguicolors
+set t_Co=256
 
 " ENCODING
 set encoding=utf-8
