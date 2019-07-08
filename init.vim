@@ -28,6 +28,13 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'mattn/emmet-vim'
   Plug 'vim-airline/vim-airline'
 
+  Plug 'ncm2/ncm2'
+  Plug 'roxma/nvim-yarp'
+  autocmd BufEnter * call ncm2#enable_for_buffer()
+  set completeopt=noinsert,menuone,noselect
+  Plug 'ncm2/ncm2-bufword'
+  Plug 'ncm2/ncm2-path'
+
 call plug#end()
 
 " MOVING BETWEEN FILES
@@ -38,6 +45,7 @@ set hidden
 " SYNTAX
 " Enable syntax highlighting
 syntax on
+set guicursor=n:blinkon1
 
 " SEARCH
 " Highlight search term. Use :nohl to redraw screen and disable highlight
@@ -61,7 +69,7 @@ set shiftwidth=2
 set guifont=Monaco\ for\ Powerline:h12
 
 " COLOR SCHEME
-" color dracula
+color dracula
 
 " ENCODING
 set encoding=utf-8
