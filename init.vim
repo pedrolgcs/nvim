@@ -26,6 +26,7 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'airblade/vim-gitgutter'
   Plug 'scrooloose/nerdcommenter'
   Plug 'mattn/emmet-vim'
+  Plug 'vim-airline/vim-airline'
 
 call plug#end()
 
