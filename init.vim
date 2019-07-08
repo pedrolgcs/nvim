@@ -15,6 +15,7 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle'  }
   Plug 'sheerun/vim-polyglot'
   Plug 'dracula/vim', { 'as': 'dracula' }
+  Plug 'tomasr/molokai'
   Plug 'jeffkreeftmeijer/vim-numbertoggle'
   Plug 'terryma/vim-multiple-cursors'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
