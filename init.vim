@@ -18,6 +18,8 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'dracula/vim', { 'as': 'dracula' }
   Plug 'tomasr/molokai'
 
+  Plug 'vim-syntastic/syntastic'
+
   Plug 'jeffkreeftmeijer/vim-numbertoggle'
   Plug 'terryma/vim-multiple-cursors'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -107,6 +109,15 @@ nnoremap <leader>n :NERDTreeToggle<cr>
 nnoremap <leader>p :vsplit <bar> :Files<cr>
 
 " PLUGINS CONFIGURATIONS
+" syntastic - eslint
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 let b:ale_fixers = ['eslint']
 
