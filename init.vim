@@ -119,6 +119,8 @@ let g:NERDTreeRespectWildIgnore = 1
 command! -bang -nargs=? -complete=dir Files 
       \ call fzf#vim#files(<q-args>, {'source': 'rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*"'}, <bang>0)
 
+let g:fzf_files_options = '--preview "cat {}"'
+
 " PLUGINS CONFIGURATIONS
 " syntastic - eslint
 set statusline+=%#warningmsg#
