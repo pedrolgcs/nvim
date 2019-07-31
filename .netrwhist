@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_cnt =4
 let g:netrw_dirhist_1='/home/galaaz/Documentos/Student/JavaScript/authentication_JWT/src'
 let g:netrw_dirhist_2='/home/galaaz/Documentos/Student/JavaScript/authentication_JWT/src/app'
 let g:netrw_dirhist_3='/home/galaaz/Documentos/Student/JavaScript/authentication_JWT/src/app/controllers'
+let g:netrw_dirhist_4='/home/galaaz/Documentos/Student/Rocketseat/YouTube/express-tdd/.git'

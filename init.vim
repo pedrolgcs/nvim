@@ -31,6 +31,7 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'scrooloose/nerdcommenter'
   Plug 'mattn/emmet-vim'
   Plug 'vim-airline/vim-airline'
+  Plug 'ap/vim-css-color'
 
   Plug 'ncm2/ncm2'
   Plug 'roxma/nvim-yarp'
@@ -108,6 +109,16 @@ nnoremap <c-f> :Ag<space>
 nnoremap <leader>n :NERDTreeToggle<cr>
 nnoremap <leader>p :vsplit <bar> :Files<cr>
 
+" ignore folders nerdtree
+set wildignore+=node_modules
+let g:NERDTreeRespectWildIgnore = 1
+
+" command! -bang -nargs=? -complete=dir Files
+"   \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+
+command! -bang -nargs=? -complete=dir Files 
+      \ call fzf#vim#files(<q-args>, {'source': 'rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*"'}, <bang>0)
+
 " PLUGINS CONFIGURATIONS
 " syntastic - eslint
 set statusline+=%#warningmsg#
@@ -118,7 +129,6 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-
 let b:ale_fixers = ['eslint']
 
 let g:NERDSpaceDelims = 1
