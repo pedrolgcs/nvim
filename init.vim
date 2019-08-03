@@ -12,33 +12,48 @@ set t_ut=
 " Configure vim-plug
 call plug#begin('~/.config/nvim/bundle')
 
+  " Tree explorer
   Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle'  }
+  " Collection of language packs
   Plug 'sheerun/vim-polyglot'
-
+  " ES6
+  Plug 'isRuslan/vim-es6'
+  " Themes
   Plug 'dracula/vim', { 'as': 'dracula' }
   Plug 'tomasr/molokai'
-
+  " Syntax checking
   Plug 'vim-syntastic/syntastic'
-
+  " Number line
   Plug 'jeffkreeftmeijer/vim-numbertoggle'
+  " Multiple selections
   Plug 'terryma/vim-multiple-cursors'
+  " File search
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
+  " Lint Engine
   Plug 'w0rp/ale'
+  " Close pairs
   Plug 'jiangmiao/auto-pairs'
+  " Identation
   Plug 'Yggdroot/indentLine'
+  " Git
   Plug 'airblade/vim-gitgutter'
+  " Comments
   Plug 'scrooloose/nerdcommenter'
+  " Expanding abbreviations
   Plug 'mattn/emmet-vim'
+  " Status/tabline
   Plug 'vim-airline/vim-airline'
+  " css color
   Plug 'ap/vim-css-color'
-
+  " autocomplete
   Plug 'ncm2/ncm2'
   Plug 'roxma/nvim-yarp'
   autocmd BufEnter * call ncm2#enable_for_buffer()
   set completeopt=noinsert,menuone,noselect
   Plug 'ncm2/ncm2-bufword'
   Plug 'ncm2/ncm2-path'
+  " close autocomplete
 
 call plug#end()
 
@@ -113,13 +128,9 @@ nnoremap <leader>p :vsplit <bar> :Files<cr>
 set wildignore+=node_modules
 let g:NERDTreeRespectWildIgnore = 1
 
-" command! -bang -nargs=? -complete=dir Files
-"   \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
-
+" Ignore folder and files: [node_modules, .git]
 command! -bang -nargs=? -complete=dir Files 
-      \ call fzf#vim#files(<q-args>, {'source': 'rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*"'}, <bang>0)
-
-let g:fzf_files_options = '--preview "cat {}"'
+      \ call fzf#vim#files(<q-args>, {'source': 'rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*"', 'options': '--preview "cat {}"'}, <bang>0)
 
 " PLUGINS CONFIGURATIONS
 " syntastic - eslint
