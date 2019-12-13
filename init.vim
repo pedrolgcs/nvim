@@ -14,6 +14,9 @@ call plug#begin('~/.config/nvim/bundle')
 
   " Tree explorer
   Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle'  }
+  Plug 'Xuyuanp/nerdtree-git-plugin'
+  " Icons
+  " Plug 'ryanoasis/vim-devicons'
   " Collection of language packs
   Plug 'sheerun/vim-polyglot'
   " ES6
@@ -27,9 +30,8 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'jeffkreeftmeijer/vim-numbertoggle'
   " Multiple selections
   Plug 'terryma/vim-multiple-cursors'
-  " File search
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-  Plug 'junegunn/fzf.vim'
+  " fuzzy find files
+  Plug 'ctrlpvim/ctrlp.vim'
   " Lint Engine
   Plug 'w0rp/ale'
   " Close pairs
@@ -47,13 +49,7 @@ call plug#begin('~/.config/nvim/bundle')
   " css color
   Plug 'ap/vim-css-color'
   " autocomplete
-  Plug 'ncm2/ncm2'
-  Plug 'roxma/nvim-yarp'
-  autocmd BufEnter * call ncm2#enable_for_buffer()
-  set completeopt=noinsert,menuone,noselect
-  Plug 'ncm2/ncm2-bufword'
-  Plug 'ncm2/ncm2-path'
-  " close autocomplete
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
@@ -86,7 +82,9 @@ set softtabstop=2
 set shiftwidth=2
 
 " FONT
-set guifont=Monaco\ for\ Powerline:h12
+set guifont=Fira\ Code\ h12
+let g:airline_powerline_fonts = 1
+
 
 " COLOR SCHEME
 " color dracula
@@ -95,7 +93,7 @@ set termguicolors
 set t_Co=256
 
 " ENCODING
-set encoding=utf-8
+set encoding=UTF-8
 
 " COMMAND LINE
 " Enhanced command line completion
@@ -119,18 +117,27 @@ set inccommand=split
 " Custom commands
 nnoremap <leader>ev :vsplit ~/.config/nvim/init.vim<cr>
 nnoremap <leader>vs :source ~/.config/nvim/init.vim<cr>
-nnoremap <c-p> :Files<cr>
 nnoremap <c-f> :Ag<space>
 nnoremap <leader>n :NERDTreeToggle<cr>
-nnoremap <leader>p :vsplit <bar> :Files<cr>
+
+" ctrlp
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+
+" coc config
+let g:coc_global_extensions = [
+  \ 'coc-snippets',
+  \ 'coc-pairs',
+  \ 'coc-tsserver',
+  \ 'coc-eslint', 
+  \ 'coc-prettier', 
+  \ 'coc-json', 
+  \ ]
+" prettier command for coc
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 " ignore folders nerdtree
 set wildignore+=node_modules
 let g:NERDTreeRespectWildIgnore = 1
-
-" Ignore folder and files: [node_modules, .git]
-command! -bang -nargs=? -complete=dir Files 
-      \ call fzf#vim#files(<q-args>, {'source': 'rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*"', 'options': '--preview "cat {}"'}, <bang>0)
 
 " PLUGINS CONFIGURATIONS
 " syntastic - eslint
