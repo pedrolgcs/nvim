@@ -11,45 +11,44 @@ set t_ut=
 
 " Configure vim-plug
 call plug#begin('~/.config/nvim/bundle')
-
-  " Tree explorer
-  Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle'  }
-  Plug 'Xuyuanp/nerdtree-git-plugin'
-  " Icons
-  " Plug 'ryanoasis/vim-devicons'
-  " Collection of language packs
-  Plug 'sheerun/vim-polyglot'
-  " ES6
-  Plug 'isRuslan/vim-es6'
-  " Themes
-  Plug 'dracula/vim', { 'as': 'dracula' }
-  Plug 'tomasr/molokai'
-  " Syntax checking
-  Plug 'vim-syntastic/syntastic'
-  " Number line
-  Plug 'jeffkreeftmeijer/vim-numbertoggle'
-  " Multiple selections
-  Plug 'terryma/vim-multiple-cursors'
-  " fuzzy find files
-  Plug 'ctrlpvim/ctrlp.vim'
-  " Lint Engine
-  Plug 'w0rp/ale'
-  " Close pairs
-  Plug 'jiangmiao/auto-pairs'
-  " Identation
-  Plug 'Yggdroot/indentLine'
-  " Git
-  Plug 'airblade/vim-gitgutter'
-  " Comments
-  Plug 'scrooloose/nerdcommenter'
-  " Expanding abbreviations
-  Plug 'mattn/emmet-vim'
-  " Status/tabline
-  Plug 'vim-airline/vim-airline'
-  " css color
-  Plug 'ap/vim-css-color'
   " autocomplete
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'mattn/emmet-vim'
+  Plug 'terryma/vim-multiple-cursors'
+  Plug 'jiangmiao/auto-pairs'
+  Plug 'Yggdroot/indentLine'
+
+  " File explorer
+  Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle'  }
+  Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'rking/ag.vim'
+  " Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  " Plug 'junegunn/fzf.vim'
+
+  " interfaces
+  Plug 'vim-airline/vim-airline'
+  Plug 'tomasr/molokai'
+
+  " languages
+  Plug 'sheerun/vim-polyglot'
+  Plug 'pangloss/vim-javascript'
+  Plug 'ap/vim-css-color'
+  Plug 'hail2u/vim-css3-syntax'
+  Plug 'cakebaker/scss-syntax.vim'
+  Plug 'othree/html5.vim'
+  Plug 'ekalinin/Dockerfile.vim'
+
+  " lint
+  Plug 'dense-analysis/ale'
+  " Plug 'vim-syntastic/syntastic'
+
+  " utils
+  Plug 'scrooloose/nerdcommenter'
+  Plug 'jeffkreeftmeijer/vim-numbertoggle'
+
+  " git
+  Plug 'Xuyuanp/nerdtree-git-plugin'
+  Plug 'airblade/vim-gitgutter'
 
 call plug#end()
 
@@ -81,13 +80,7 @@ set expandtab
 set softtabstop=2
 set shiftwidth=2
 
-" FONT
-set guifont=Fira\ Code\ h12
-let g:airline_powerline_fonts = 1
-
-
 " COLOR SCHEME
-" color dracula
 colorscheme molokai
 set termguicolors
 set t_Co=256
@@ -114,6 +107,68 @@ set autoread
 " Show preview
 set inccommand=split
 
+""""""""""""""""""""""""""""""""""""""
+" Plugin NERDTree
+""""""""""""""""""""""""""""""""""""""
+nnoremap <C-e> :NERDTreeToggle<CR>
+
+nnoremap <leader>m :NERDTreeFind<cr>
+let NERDTreeShowHidden=1
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+let NERDTreeWinSize=25
+
+""""""""""""""""""""""""""""""""""""""
+" Plugin css
+""""""""""""""""""""""""""""""""""""""
+augroup VimCSS3Syntax
+  autocmd!
+  autocmd FileType css setlocal iskeyword+=-
+augroup END
+
+""""""""""""""""""""""""""""""""""""""
+" Plugin sass
+""""""""""""""""""""""""""""""""""""""
+autocmd FileType scss set iskeyword+=-
+
+""""""""""""""""""""""""""""""""""""""
+" Plugin ale
+""""""""""""""""""""""""""""""""""""""
+let g:ale_sign_error = '❌'
+let g:ale_sign_warning = '⚠️'
+let g:ale_linters_explicit = 1
+let g:ale_linter_aliases = {'javascript': ['javascript']}
+let g:ale_linters = {'javascript': ['eslint'], 'react': ['eslint']}
+
+""""""""""""""""""""""""""""""""""""""
+" Plugin COC
+""""""""""""""""""""""""""""""""""""""
+set nobackup
+set nowritebackup
+
+" Better display for messages
+set cmdheight=2
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" prettier command for coc
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+""""""""""""""""""""""""""""""""""
+" Plugin vim-airline
+""""""""""""""""""""""""""""""""""
+" let g:airline#extensions#tabline#enabled = 1
+
 " Custom commands
 nnoremap <leader>ev :vsplit ~/.config/nvim/init.vim<cr>
 nnoremap <leader>vs :source ~/.config/nvim/init.vim<cr>
@@ -122,33 +177,3 @@ nnoremap <leader>n :NERDTreeToggle<cr>
 
 " ctrlp
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-
-" coc config
-let g:coc_global_extensions = [
-  \ 'coc-snippets',
-  \ 'coc-pairs',
-  \ 'coc-tsserver',
-  \ 'coc-eslint', 
-  \ 'coc-prettier', 
-  \ 'coc-json', 
-  \ ]
-" prettier command for coc
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
-
-" ignore folders nerdtree
-set wildignore+=node_modules
-let g:NERDTreeRespectWildIgnore = 1
-
-" PLUGINS CONFIGURATIONS
-" syntastic - eslint
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let b:ale_fixers = ['eslint']
-
-let g:NERDSpaceDelims = 1
