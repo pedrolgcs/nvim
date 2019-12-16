@@ -121,6 +121,7 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
+let g:syntastic_javascript_eslint_args = ['--fix']
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
@@ -128,7 +129,10 @@ let g:syntastic_check_on_wq = 0
 
 nnoremap <leader>st :SyntasticToggleMode<cr>
 
-let g:syntastic_javascript_checkers = ['standard']
+let g:syntastic_javascript_checkers = ['airbnb']
+
+" nerdcommenter
+let g:NERDSpaceDelims = 1
 
 " Plugin fuzzy finder - fzf
 let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -l -g ""'
@@ -160,4 +164,4 @@ nnoremap <leader>ev :vsplit ~/.config/nvim/init.vim<cr>
 nnoremap <leader>vs :source ~/.config/nvim/init.vim<cr>
 
 " ctrlp
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+" let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
