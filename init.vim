@@ -1,5 +1,5 @@
 " Author: Pedro Henrique
-" Souce: https://github.com/pedrolgcs
+" Souce: https://github.com/pedrolgcs/nvim
 
 " LEADER KEY
 let mapleader="\<space>"
@@ -12,18 +12,18 @@ set t_ut=
 " Configure vim-plug
 call plug#begin('~/.config/nvim/bundle')
   " autocomplete
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'mattn/emmet-vim'
   Plug 'terryma/vim-multiple-cursors'
   Plug 'jiangmiao/auto-pairs'
   Plug 'Yggdroot/indentLine'
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
   " File explorer
   Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle'  }
-  Plug 'ctrlpvim/ctrlp.vim'
-  Plug 'rking/ag.vim'
-  " Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-  " Plug 'junegunn/fzf.vim'
+  " Plug 'ctrlpvim/ctrlp.vim'
+  " Plug 'rking/ag.vim'
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug 'junegunn/fzf.vim'
 
   " interfaces
   Plug 'vim-airline/vim-airline'
@@ -32,6 +32,7 @@ call plug#begin('~/.config/nvim/bundle')
   " languages
   Plug 'sheerun/vim-polyglot'
   Plug 'pangloss/vim-javascript'
+  Plug 'mxw/vim-jsx'
   Plug 'ap/vim-css-color'
   Plug 'hail2u/vim-css3-syntax'
   Plug 'cakebaker/scss-syntax.vim'
@@ -39,8 +40,8 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'ekalinin/Dockerfile.vim'
 
   " lint
-  Plug 'dense-analysis/ale'
-  " Plug 'vim-syntastic/syntastic'
+  Plug 'scrooloose/syntastic'
+  Plug 'editorconfig/editorconfig-vim'
 
   " utils
   Plug 'scrooloose/nerdcommenter'
@@ -73,12 +74,19 @@ let g:ag_working_path_mode="r"
 set ignorecase
 set smartcase
 
+" Some servers have issues with backup files, see #649
+set nobackup
+set nowritebackup
+
 " AUTO IDENTATION
 " Enable auto identation with 'spaces' instead of 'tabs'
 set smartindent
 set expandtab
 set softtabstop=2
 set shiftwidth=2
+
+" Ignore some extensions
+set wildignore=*.class,*.zip,*.gif,*.pyc,*.swp,*.tar.*,*.pdf,node_modules/**
 
 " COLOR SCHEME
 colorscheme molokai
@@ -107,10 +115,29 @@ set autoread
 " Show preview
 set inccommand=split
 
-""""""""""""""""""""""""""""""""""""""
+" SYNTASTIC
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+nnoremap <leader>st :SyntasticToggleMode<cr>
+
+let g:syntastic_javascript_checkers = ['standard']
+
+" Plugin fuzzy finder - fzf
+let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -l -g ""'
+nnoremap <c-P> :Files<cr>
+nnoremap <c-F> :Ag<cr>
+nnoremap <leader>t :BTags<CR>
+nnoremap <leader>T :Tags<CR>
+
 " Plugin NERDTree
-""""""""""""""""""""""""""""""""""""""
-nnoremap <C-e> :NERDTreeToggle<CR>
+nnoremap <leader>n :NERDTreeToggle<cr>
 
 nnoremap <leader>m :NERDTreeFind<cr>
 let NERDTreeShowHidden=1
@@ -118,62 +145,18 @@ let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let NERDTreeWinSize=25
 
-""""""""""""""""""""""""""""""""""""""
 " Plugin css
-""""""""""""""""""""""""""""""""""""""
 augroup VimCSS3Syntax
   autocmd!
   autocmd FileType css setlocal iskeyword+=-
 augroup END
 
-""""""""""""""""""""""""""""""""""""""
 " Plugin sass
-""""""""""""""""""""""""""""""""""""""
 autocmd FileType scss set iskeyword+=-
-
-""""""""""""""""""""""""""""""""""""""
-" Plugin ale
-""""""""""""""""""""""""""""""""""""""
-let g:ale_sign_error = '❌'
-let g:ale_sign_warning = '⚠️'
-let g:ale_linters_explicit = 1
-let g:ale_linter_aliases = {'javascript': ['javascript']}
-let g:ale_linters = {'javascript': ['eslint'], 'react': ['eslint']}
-
-""""""""""""""""""""""""""""""""""""""
-" Plugin COC
-""""""""""""""""""""""""""""""""""""""
-set nobackup
-set nowritebackup
-
-" Better display for messages
-set cmdheight=2
-
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
-
-" prettier command for coc
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
-
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-""""""""""""""""""""""""""""""""""
-" Plugin vim-airline
-""""""""""""""""""""""""""""""""""
-" let g:airline#extensions#tabline#enabled = 1
 
 " Custom commands
 nnoremap <leader>ev :vsplit ~/.config/nvim/init.vim<cr>
 nnoremap <leader>vs :source ~/.config/nvim/init.vim<cr>
-nnoremap <c-f> :Ag<space>
-nnoremap <leader>n :NERDTreeToggle<cr>
 
 " ctrlp
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
