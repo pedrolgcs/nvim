@@ -77,6 +77,7 @@ set smartcase
 " Some servers have issues with backup files, see #649
 set nobackup
 set nowritebackup
+set noswapfile
 
 " AUTO IDENTATION
 " Enable auto identation with 'spaces' instead of 'tabs'
