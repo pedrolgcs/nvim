@@ -20,19 +20,20 @@ call plug#begin('~/.config/nvim/bundle')
 
   " File explorer
   Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle'  }
-  " Plug 'ctrlpvim/ctrlp.vim'
-  " Plug 'rking/ag.vim'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
+  Plug 'christoomey/vim-tmux-navigator'
 
   " interfaces
   Plug 'vim-airline/vim-airline'
   Plug 'tomasr/molokai'
+  " Plug 'ryanoasis/vim-devicons'
 
   " languages
   Plug 'sheerun/vim-polyglot'
   Plug 'pangloss/vim-javascript'
   Plug 'mxw/vim-jsx'
+  Plug 'HerringtonDarkholme/yats.vim'
   Plug 'ap/vim-css-color'
   Plug 'hail2u/vim-css3-syntax'
   Plug 'cakebaker/scss-syntax.vim'
@@ -40,8 +41,9 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'ekalinin/Dockerfile.vim'
 
   " lint
-  Plug 'scrooloose/syntastic'
+  " Plug 'dense-analysis/ale'
   Plug 'editorconfig/editorconfig-vim'
+  " Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
   " utils
   Plug 'scrooloose/nerdcommenter'
@@ -116,25 +118,37 @@ set autoread
 " Show preview
 set inccommand=split
 
-" SYNTASTIC
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_javascript_eslint_args = ['--fix']
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-nnoremap <leader>st :SyntasticToggleMode<cr>
-
-let g:syntastic_javascript_checkers = ['airbnb']
-
 " nerdcommenter
 let g:NERDSpaceDelims = 1
 
-" Plugin fuzzy finder - fzf
+" -------- COC
+
+" coc config
+let g:coc_global_extensions = [
+  \ 'coc-snippets',
+  \ 'coc-pairs',
+  \ 'coc-tsserver',
+  \ 'coc-eslint', 
+  \ 'coc-prettier', 
+  \ 'coc-json', 
+  \ ]
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" coc prettier
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Remap for rename current word
+nmap <F2> <Plug>(coc-rename)
+
+"Plugin fuzzy finder - fzf
 let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -l -g ""'
 nnoremap <c-P> :Files<cr>
 nnoremap <c-F> :Ag<cr>
@@ -143,6 +157,7 @@ nnoremap <leader>T :Tags<CR>
 
 " Plugin NERDTree
 nnoremap <leader>n :NERDTreeToggle<cr>
+let g:NERDTreeIgnore = ['^node_modules$']
 
 nnoremap <leader>m :NERDTreeFind<cr>
 let NERDTreeShowHidden=1
