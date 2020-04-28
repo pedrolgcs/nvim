@@ -1,4 +1,5 @@
 {
+  "prettier.eslintIntegration": true,
   "suggest.noselect": false,
   "coc.preferences.formatOnSaveFiletypes": [
     "javascript",

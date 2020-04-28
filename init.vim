@@ -27,6 +27,7 @@ call plug#begin('~/.config/nvim/bundle')
   " interfaces
   Plug 'vim-airline/vim-airline'
   Plug 'tomasr/molokai'
+  Plug 'dracula/vim', { 'as': 'dracula' }
   " Plug 'ryanoasis/vim-devicons'
 
   " languages
@@ -60,6 +61,9 @@ call plug#end()
 " need to save it first (if there's any unsaved changes).
 set hidden
 
+" Confirm save file
+set confirm
+
 " SYNTAX
 " Enable syntax highlighting
 syntax on
@@ -75,6 +79,7 @@ let g:ag_working_path_mode="r"
 " Use case insensitive search, except when using capital letters
 set ignorecase
 set smartcase
+set autoindent
 
 " Some servers have issues with backup files, see #649
 set nobackup
@@ -92,7 +97,7 @@ set shiftwidth=2
 set wildignore=*.class,*.zip,*.gif,*.pyc,*.swp,*.tar.*,*.pdf,node_modules/**
 
 " COLOR SCHEME
-colorscheme molokai
+colorscheme dracula
 set termguicolors
 set t_Co=256
 
@@ -177,6 +182,8 @@ autocmd FileType scss set iskeyword+=-
 " Custom commands
 nnoremap <leader>ev :vsplit ~/.config/nvim/init.vim<cr>
 nnoremap <leader>vs :source ~/.config/nvim/init.vim<cr>
+map <C-s> :w<CR>
+map q :quit<CR>
 
 " ctrlp
 " let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
