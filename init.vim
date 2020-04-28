@@ -147,7 +147,7 @@ command! -nargs=0 Prettier :CocCommand prettier.formatFile
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
+" nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " Remap for rename current word
@@ -183,7 +183,7 @@ autocmd FileType scss set iskeyword+=-
 nnoremap <leader>ev :vsplit ~/.config/nvim/init.vim<cr>
 nnoremap <leader>vs :source ~/.config/nvim/init.vim<cr>
 map <C-s> :w<CR>
-map q :quit<CR>
+map <C-q> :quit<CR>
 
 " ctrlp
 " let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
