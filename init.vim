@@ -16,6 +16,7 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'terryma/vim-multiple-cursors'
   Plug 'jiangmiao/auto-pairs'
   Plug 'Yggdroot/indentLine'
+  Plug 'tpope/vim-surround'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
   " File explorer
@@ -33,6 +34,7 @@ call plug#begin('~/.config/nvim/bundle')
   " languages
   Plug 'sheerun/vim-polyglot'
   Plug 'pangloss/vim-javascript'
+  Plug 'leafgarland/typescript-vim'
   Plug 'mxw/vim-jsx'
   Plug 'HerringtonDarkholme/yats.vim'
   Plug 'ap/vim-css-color'
@@ -40,6 +42,7 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'cakebaker/scss-syntax.vim'
   Plug 'othree/html5.vim'
   Plug 'ekalinin/Dockerfile.vim'
+  Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
   " lint
   " Plug 'dense-analysis/ale'
@@ -126,7 +129,7 @@ set inccommand=split
 " nerdcommenter
 let g:NERDSpaceDelims = 1
 
-" -------- COC
+" -------- COC 
 
 " coc config
 let g:coc_global_extensions = [
@@ -136,6 +139,7 @@ let g:coc_global_extensions = [
   \ 'coc-eslint', 
   \ 'coc-prettier', 
   \ 'coc-json', 
+  \ 'coc-styled-components',
   \ ]
 
 " Use <c-space> to trigger completion.
