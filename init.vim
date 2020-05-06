@@ -16,7 +16,6 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'terryma/vim-multiple-cursors'
   Plug 'jiangmiao/auto-pairs'
   Plug 'Yggdroot/indentLine'
-  Plug 'tpope/vim-surround'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
   " File explorer
@@ -29,13 +28,11 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'vim-airline/vim-airline'
   Plug 'tomasr/molokai'
   Plug 'dracula/vim', { 'as': 'dracula' }
-  " Plug 'ryanoasis/vim-devicons'
 
   " languages
   Plug 'sheerun/vim-polyglot'
   Plug 'pangloss/vim-javascript'
-  Plug 'leafgarland/typescript-vim'
-  Plug 'mxw/vim-jsx'
+  Plug 'maxmellon/vim-jsx-pretty'
   Plug 'HerringtonDarkholme/yats.vim'
   Plug 'ap/vim-css-color'
   Plug 'hail2u/vim-css3-syntax'
@@ -45,13 +42,13 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
   " lint
-  " Plug 'dense-analysis/ale'
   Plug 'editorconfig/editorconfig-vim'
   " Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
   " utils
   Plug 'scrooloose/nerdcommenter'
   Plug 'jeffkreeftmeijer/vim-numbertoggle'
+  Plug 'tpope/vim-surround'
 
   " git
   Plug 'Xuyuanp/nerdtree-git-plugin'
