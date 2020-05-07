@@ -31,19 +31,20 @@ call plug#begin('~/.config/nvim/bundle')
 
   " languages
   Plug 'sheerun/vim-polyglot'
+
   Plug 'pangloss/vim-javascript'
-  Plug 'maxmellon/vim-jsx-pretty'
-  Plug 'HerringtonDarkholme/yats.vim'
+  Plug 'leafgarland/typescript-vim'
+  Plug 'peitalin/vim-jsx-typescript'
+  " Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+
   Plug 'ap/vim-css-color'
   Plug 'hail2u/vim-css3-syntax'
   Plug 'cakebaker/scss-syntax.vim'
   Plug 'othree/html5.vim'
   Plug 'ekalinin/Dockerfile.vim'
-  Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
   " lint
   Plug 'editorconfig/editorconfig-vim'
-  " Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
   " utils
   Plug 'scrooloose/nerdcommenter'
@@ -97,7 +98,7 @@ set shiftwidth=2
 set wildignore=*.class,*.zip,*.gif,*.pyc,*.swp,*.tar.*,*.pdf,node_modules/**
 
 " COLOR SCHEME
-colorscheme dracula
+colorscheme molokai
 set termguicolors
 set t_Co=256
 
@@ -127,7 +128,6 @@ set inccommand=split
 let g:NERDSpaceDelims = 1
 
 " -------- COC 
-
 " coc config
 let g:coc_global_extensions = [
   \ 'coc-snippets',
@@ -141,6 +141,8 @@ let g:coc_global_extensions = [
 
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
+
+nnoremap <silent> K :call CocAction('doHover')<CR>
 
 " coc prettier
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
@@ -185,6 +187,3 @@ nnoremap <leader>ev :vsplit ~/.config/nvim/init.vim<cr>
 nnoremap <leader>vs :source ~/.config/nvim/init.vim<cr>
 map <C-s> :w<CR>
 map <C-q> :quit<CR>
-
-" ctrlp
-" let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
