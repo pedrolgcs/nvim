@@ -98,7 +98,7 @@ set shiftwidth=2
 set wildignore=*.class,*.zip,*.gif,*.pyc,*.swp,*.tar.*,*.pdf,node_modules/**
 
 " COLOR SCHEME
-colorscheme molokai
+colorscheme dracula
 set termguicolors
 set t_Co=256
 
@@ -135,8 +135,8 @@ let g:coc_global_extensions = [
   \ 'coc-tsserver',
   \ 'coc-eslint', 
   \ 'coc-prettier', 
-  \ 'coc-json', 
   \ 'coc-styled-components',
+  \ 'coc-json', 
   \ ]
 
 " Use <c-space> to trigger completion.
