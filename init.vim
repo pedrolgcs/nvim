@@ -35,13 +35,14 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'pangloss/vim-javascript'
   Plug 'leafgarland/typescript-vim'
   Plug 'peitalin/vim-jsx-typescript'
-  " Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+  Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
   Plug 'ap/vim-css-color'
   Plug 'hail2u/vim-css3-syntax'
   Plug 'cakebaker/scss-syntax.vim'
   Plug 'othree/html5.vim'
   Plug 'ekalinin/Dockerfile.vim'
+  Plug 'godlygeek/tabular'
 
   " lint
   Plug 'editorconfig/editorconfig-vim'
@@ -139,13 +140,13 @@ let g:coc_global_extensions = [
   \ 'coc-json', 
   \ ]
 
+" indentLine
+let g:indentLine_setConceal = 0
+
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 
 nnoremap <silent> K :call CocAction('doHover')<CR>
-
-" coc prettier
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
