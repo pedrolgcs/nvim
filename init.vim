@@ -141,7 +141,9 @@ let g:coc_global_extensions = [
   \ ]
 
 " indentLine
-let g:indentLine_setConceal = 0
+" let g:indentLine_setConceal = 0
+let g:vim_json_syntax_conceal = 0
+let g:vim_markdown_conceal = 0
 
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
