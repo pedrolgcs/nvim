@@ -15,6 +15,7 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'mattn/emmet-vim'
   Plug 'terryma/vim-multiple-cursors'
   Plug 'jiangmiao/auto-pairs'
+  Plug 'rstacruz/vim-closer'
   Plug 'Yggdroot/indentLine'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -31,26 +32,25 @@ call plug#begin('~/.config/nvim/bundle')
 
   " languages
   Plug 'sheerun/vim-polyglot'
-
   Plug 'pangloss/vim-javascript'
+  Plug 'othree/javascript-libraries-syntax.vim'
+
   Plug 'leafgarland/typescript-vim'
   Plug 'peitalin/vim-jsx-typescript'
-  Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+  Plug 'othree/yajs.vim'
 
+  Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
   Plug 'ap/vim-css-color'
   Plug 'hail2u/vim-css3-syntax'
-  Plug 'cakebaker/scss-syntax.vim'
   Plug 'othree/html5.vim'
   Plug 'ekalinin/Dockerfile.vim'
-  Plug 'godlygeek/tabular'
-
-  " lint
-  " Plug 'editorconfig/editorconfig-vim'
 
   " utils
   Plug 'scrooloose/nerdcommenter'
   Plug 'jeffkreeftmeijer/vim-numbertoggle'
   Plug 'tpope/vim-surround'
+  Plug 'godlygeek/tabular'
+  Plug 'Shougo/echodoc.vim'
 
   " git
   Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -125,14 +125,19 @@ set autoread
 " Show preview
 set inccommand=split
 
+" Polyglot (change back and front)
+" let g:polyglot_disabled = ['typescript']
+
 " nerdcommenter
 let g:NERDSpaceDelims = 1
+
+let g:NERDTreeDirArrowExpandable = '⬏'
+let g:NERDTreeDirArrowCollapsible = '⬎'
 
 " -------- COC 
 " coc config
 let g:coc_global_extensions = [
   \ 'coc-snippets',
-  \ 'coc-pairs',
   \ 'coc-tsserver',
   \ 'coc-eslint', 
   \ 'coc-prettier', 
@@ -144,8 +149,8 @@ let g:coc_global_extensions = [
 let g:vim_json_syntax_conceal = 0
 let g:vim_markdown_conceal = 0
 
-" Polyglot
-let g:polyglot_disabled = ['typescript']
+" === javascript-libraries-syntax === "
+let g:used_javascript_libs = 'react'
 
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
@@ -155,7 +160,6 @@ nnoremap <silent> K :call CocAction('doHover')<CR>
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
-" nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " Remap for rename current word
@@ -176,16 +180,13 @@ nnoremap <leader>m :NERDTreeFind<cr>
 let NERDTreeShowHidden=1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
-let NERDTreeWinSize=25
+let NERDTreeWinSize=30
 
 " Plugin css
 augroup VimCSS3Syntax
   autocmd!
   autocmd FileType css setlocal iskeyword+=-
 augroup END
-
-" Plugin sass
-autocmd FileType scss set iskeyword+=-
 
 " Custom commands
 nnoremap <leader>ev :vsplit ~/.config/nvim/init.vim<cr>
