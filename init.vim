@@ -9,7 +9,9 @@ let mapleader="\<space>"
 set nocompatible
 set t_ut=
 
-" Configure vim-plug
+" ============================================================================ "
+" ===                               PLUGINS                                === "
+" ============================================================================ "
 call plug#begin('~/.config/nvim/bundle')
   " autocomplete
   Plug 'mattn/emmet-vim'
@@ -125,8 +127,8 @@ set autoread
 " Show preview
 set inccommand=split
 
-" Polyglot (change back and front)
-" let g:polyglot_disabled = ['typescript']
+" Polyglot disabled by extension file
+au BufEnter,BufNew *.ts let g:polyglot_disabled = ['typescript']
 
 " nerdcommenter
 let g:NERDSpaceDelims = 1
