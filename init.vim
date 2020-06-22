@@ -80,6 +80,10 @@ set hlsearch
 " Make Ag search from your project root
 let g:ag_working_path_mode="r"
 
+" load systax
+autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
+autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
+
 " Use case insensitive search, except when using capital letters
 set ignorecase
 set smartcase
@@ -127,9 +131,6 @@ set autoread
 " Show preview
 set inccommand=split
 
-autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
-autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
-
 " Polyglot disabled by extension file
 au BufEnter,BufNew *.ts let g:polyglot_disabled = ['typescript']
 
@@ -139,7 +140,7 @@ let g:NERDSpaceDelims = 1
 let g:NERDTreeDirArrowExpandable = '⬏'
 let g:NERDTreeDirArrowCollapsible = '⬎'
 
-" -------- COC 
+" -------- COC --------
 " coc config
 let g:coc_global_extensions = [
   \ 'coc-snippets',
@@ -155,7 +156,7 @@ let g:vim_json_syntax_conceal = 0
 let g:vim_markdown_conceal = 0
 
 " === javascript-libraries-syntax === "
-let g:used_javascript_libs = 'react'
+let g:used_javascript_libs = 'jquery,underscore,backbone,react'
 
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
