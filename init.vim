@@ -127,6 +127,9 @@ set autoread
 " Show preview
 set inccommand=split
 
+autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
+autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
+
 " Polyglot disabled by extension file
 au BufEnter,BufNew *.ts let g:polyglot_disabled = ['typescript']
 
