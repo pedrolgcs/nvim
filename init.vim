@@ -131,8 +131,10 @@ set autoread
 " Show preview
 set inccommand=split
 
-" Polyglot disabled by extension file
+" ==========Polyglot ==========
 au BufEnter,BufNew *.ts let g:polyglot_disabled = ['typescript']
+let g:yats_host_keyword = 1
+set re=0
 
 " nerdcommenter
 let g:NERDSpaceDelims = 1
