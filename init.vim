@@ -39,7 +39,6 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'pangloss/vim-javascript'
   Plug 'othree/javascript-libraries-syntax.vim'
 
-  Plug 'leafgarland/typescript-vim'
   Plug 'peitalin/vim-jsx-typescript'
   Plug 'othree/yajs.vim'
 
@@ -169,6 +168,7 @@ nmap <silent> gr <Plug>(coc-references)
 let g:vim_json_syntax_conceal = 0
 let g:vim_markdown_conceal = 0
 let g:indentLine_color_gui = '#A4E57E'
+" let g:indentLine_color_gui = '#7159c1'
 nmap <F2> <Plug>(coc-rename)
 
 """"""""""""""""""""""""""""""""""""""
