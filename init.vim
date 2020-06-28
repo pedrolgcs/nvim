@@ -13,6 +13,7 @@ set t_ut=
 " ===                               PLUGINS                                === "
 " ============================================================================ "
 call plug#begin('~/.config/nvim/bundle')
+
   " autocomplete
   Plug 'mattn/emmet-vim'
   Plug 'terryma/vim-multiple-cursors'
@@ -31,6 +32,7 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'vim-airline/vim-airline'
   Plug 'tomasr/molokai'
   Plug 'dracula/vim', { 'as': 'dracula' }
+  Plug 'ryanoasis/vim-devicons'
 
   " languages
   Plug 'sheerun/vim-polyglot'
@@ -60,9 +62,11 @@ call plug#begin('~/.config/nvim/bundle')
 
 call plug#end()
 
+"""""""""""""""""""""""""""""""""""
+" Commons Config
+"""""""""""""""""""""""""""""""""""
+
 " MOVING BETWEEN FILES
-" Set 'hidden' if you want to open a new file inside the same buffer without the
-" need to save it first (if there's any unsaved changes).
 set hidden
 
 " Confirm save file
@@ -131,19 +135,21 @@ set autoread
 " Show preview
 set inccommand=split
 
-" ==========Polyglot ==========
+""""""""""""""""""""""""""""""""""""""
+" Polyglot
+""""""""""""""""""""""""""""""""""""""
 au BufEnter,BufNew *.ts let g:polyglot_disabled = ['typescript']
 let g:yats_host_keyword = 1
 set re=0
 
-" nerdcommenter
+""""""""""""""""""""""""""""""""""""""
+" NERD Commenter
+""""""""""""""""""""""""""""""""""""""
 let g:NERDSpaceDelims = 1
 
-let g:NERDTreeDirArrowExpandable = '⬏'
-let g:NERDTreeDirArrowCollapsible = '⬎'
-
-" -------- COC --------
-" coc config
+""""""""""""""""""""""""""""""""""""""
+" COC
+""""""""""""""""""""""""""""""""""""""
 let g:coc_global_extensions = [
   \ 'coc-snippets',
   \ 'coc-tsserver',
@@ -153,50 +159,67 @@ let g:coc_global_extensions = [
   \ 'coc-json', 
   \ ]
 
-" indentLine
-let g:vim_json_syntax_conceal = 0
-let g:vim_markdown_conceal = 0
-
-" === javascript-libraries-syntax === "
-let g:used_javascript_libs = 'jquery,underscore,backbone,react'
-
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-nnoremap <silent> K :call CocAction('doHover')<CR>
-
-" Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gr <Plug>(coc-references)
 
-" Remap for rename current word
+""""""""""""""""""""""""""""""""""""""
+" Indent Line
+""""""""""""""""""""""""""""""""""""""
+let g:vim_json_syntax_conceal = 0
+let g:vim_markdown_conceal = 0
+let g:indentLine_color_gui = '#A4E57E'
 nmap <F2> <Plug>(coc-rename)
 
-"Plugin fuzzy finder - fzf
+""""""""""""""""""""""""""""""""""""""
+" Javascript libraries syntax
+""""""""""""""""""""""""""""""""""""""
+let g:used_javascript_libs = 'jquery,underscore,backbone,react'
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+nnoremap <silent> K :call CocAction('doHover')<CR>
+
+""""""""""""""""""""""""""""""""""""""
+" AirLine
+""""""""""""""""""""""""""""""""""""""
+let g:airline_powerline_fonts = 1
+
+""""""""""""""""""""""""""""""""""""""
+" Plugin fuzzy finder - fzf
+""""""""""""""""""""""""""""""""""""""
 let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -l -g ""'
 nnoremap <c-P> :Files<cr>
 nnoremap <c-F> :Ag<cr>
 nnoremap <leader>t :BTags<CR>
 nnoremap <leader>T :Tags<CR>
 
-" Plugin NERDTree
-nnoremap <leader>n :NERDTreeToggle<cr>
-let g:NERDTreeIgnore = ['^node_modules$']
-
+""""""""""""""""""""""""""""""""""""""
+" NerdTree
+""""""""""""""""""""""""""""""""""""""
 nnoremap <leader>m :NERDTreeFind<cr>
+nnoremap <leader>n :NERDTreeToggle<cr>
+
+let g:NERDTreeIgnore = ['^node_modules$']
+let g:NERDTreeDirArrowExpandable = '⬏'
+let g:NERDTreeDirArrowCollapsible = '⬎'
+
 let NERDTreeShowHidden=1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let NERDTreeWinSize=30
 
-" Plugin css
+""""""""""""""""""""""""""""""""""""""
+" Css
+""""""""""""""""""""""""""""""""""""""
 augroup VimCSS3Syntax
   autocmd!
   autocmd FileType css setlocal iskeyword+=-
 augroup END
 
-" Custom commands
+""""""""""""""""""""""""""""""""""""""
+" Custom Commands
+""""""""""""""""""""""""""""""""""""""
 nnoremap <leader>ev :vsplit ~/.config/nvim/init.vim<cr>
 nnoremap <leader>vs :source ~/.config/nvim/init.vim<cr>
 map <C-s> :w<CR>
