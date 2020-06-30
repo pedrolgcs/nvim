@@ -32,15 +32,15 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'vim-airline/vim-airline'
   Plug 'tomasr/molokai'
   Plug 'dracula/vim', { 'as': 'dracula' }
+  Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
   Plug 'ryanoasis/vim-devicons'
 
   " languages
   Plug 'sheerun/vim-polyglot'
   Plug 'pangloss/vim-javascript'
   Plug 'othree/javascript-libraries-syntax.vim'
-
-  Plug 'peitalin/vim-jsx-typescript'
-  Plug 'othree/yajs.vim'
+  Plug 'othree/yajs'
+  Plug 'ianks/vim-tsx'
 
   Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
   Plug 'ap/vim-css-color'
@@ -86,6 +86,8 @@ let g:ag_working_path_mode="r"
 " load systax
 autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
 autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
+au BufNewFile,BufRead *.ts setlocal filetype=typescript
+au BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
 
 " Use case insensitive search, except when using capital letters
 set ignorecase
@@ -168,13 +170,23 @@ nmap <silent> gr <Plug>(coc-references)
 let g:vim_json_syntax_conceal = 0
 let g:vim_markdown_conceal = 0
 let g:indentLine_color_gui = '#A4E57E'
-" let g:indentLine_color_gui = '#7159c1'
 nmap <F2> <Plug>(coc-rename)
 
 """"""""""""""""""""""""""""""""""""""
 " Javascript libraries syntax
 """"""""""""""""""""""""""""""""""""""
 let g:used_javascript_libs = 'jquery,underscore,backbone,react'
+
+""""""""""""""""""""""""""""""""""""""
+" DevIcons
+""""""""""""""""""""""""""""""""""""""
+let g:webdevicons_enable = 1
+let g:webdevicons_enable_nerdtree = 1
+let g:WebDevIconsUnicodeGlyphDoubleWidth = 0
+
+if exists('g:loaded_webdevicons')
+  call webdevicons#refresh()
+endif
 
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
@@ -208,6 +220,16 @@ let NERDTreeShowHidden=1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let NERDTreeWinSize=30
+let g:NERDTreeGitStatusWithFlags = 0
+let g:NERDTreeGitStatusNodeColorization = 1
+let g:NERDTreeColorMapCustom = {
+    \ "Modified"  : "#528AB3",
+    \ "Staged"    : "#538B54",
+    \ "Untracked" : "#BE5849",
+    \ "Dirty"     : "#299999",
+    \ "Clean"     : "#87939A",
+    \ "Ignored"   : "#808080"
+    \ }
 
 """"""""""""""""""""""""""""""""""""""
 " Css

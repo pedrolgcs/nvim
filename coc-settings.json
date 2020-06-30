@@ -18,5 +18,6 @@
   ],
   "diagnostic.errorSign": "•",
   "diagnostic.warningSign": "•",
-  "diagnostic.infoSign": "•"
+  "diagnostic.infoSign": "•",
+  "prettier.singleQuote": true
 }
