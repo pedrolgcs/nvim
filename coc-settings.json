@@ -1,6 +1,8 @@
 {
   "suggest.echodocSupport": true,
   "suggest.maxCompleteItemCount": 20,
+  "suggest.snippetIndicator": " ⭐︎",
+
   "coc.preferences.formatOnSaveFiletypes": [
     "javascript",
     "typescript",
@@ -9,6 +11,8 @@
     "javascriptreact",
     "typescript.tsx"
   ],
+  "coc.preferences.formatOnType": true,
+
   "eslint.filetypes": [
     "javascript",
     "typescript",
@@ -16,6 +20,7 @@
     "javascriptreact",
     "typescript.tsx"
   ],
+
   "diagnostic.errorSign": "•",
   "diagnostic.warningSign": "•",
   "diagnostic.infoSign": "•",
