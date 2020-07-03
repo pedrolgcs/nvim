@@ -58,6 +58,7 @@ call plug#begin('~/.config/nvim/bundle')
   " git
   Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'airblade/vim-gitgutter'
+  Plug 'tpope/vim-fugitive'
 
 call plug#end()
 
@@ -158,11 +159,13 @@ let g:coc_global_extensions = [
   \ 'coc-prettier', 
   \ 'coc-styled-components',
   \ 'coc-json', 
+  \ 'coc-import-cost'
   \ ]
 
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gr <Plug>(coc-references)
+nmap <F2> <Plug>(coc-rename)
 
 """"""""""""""""""""""""""""""""""""""
 " Indent Line
@@ -170,7 +173,7 @@ nmap <silent> gr <Plug>(coc-references)
 let g:vim_json_syntax_conceal = 0
 let g:vim_markdown_conceal = 0
 let g:indentLine_color_gui = '#A4E57E'
-nmap <F2> <Plug>(coc-rename)
+let g:indentLine_char_list = ['⎸']
 
 """"""""""""""""""""""""""""""""""""""
 " Javascript libraries syntax
