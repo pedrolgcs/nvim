@@ -51,6 +51,7 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'godlygeek/tabular'
   Plug 'Shougo/echodoc.vim'
   Plug 'editorconfig/editorconfig-vim'
+  Plug 'gko/vim-coloresque'
 
   " git
   Plug 'Xuyuanp/nerdtree-git-plugin'
