@@ -37,16 +37,12 @@ call plug#begin('~/.config/nvim/bundle')
 
   " languages
   Plug 'sheerun/vim-polyglot'
-  Plug 'pangloss/vim-javascript'
   Plug 'othree/javascript-libraries-syntax.vim'
   Plug 'othree/yajs'
   Plug 'ianks/vim-tsx'
-
   Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
   Plug 'ap/vim-css-color'
   Plug 'hail2u/vim-css3-syntax'
-  Plug 'othree/html5.vim'
-  Plug 'ekalinin/Dockerfile.vim'
 
   " utils
   Plug 'scrooloose/nerdcommenter'
@@ -54,6 +50,7 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'tpope/vim-surround'
   Plug 'godlygeek/tabular'
   Plug 'Shougo/echodoc.vim'
+  Plug 'editorconfig/editorconfig-vim'
 
   " git
   Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -140,7 +137,7 @@ set inccommand=split
 """"""""""""""""""""""""""""""""""""""
 " Polyglot
 """"""""""""""""""""""""""""""""""""""
-au BufEnter,BufNew *.ts let g:polyglot_disabled = ['typescript']
+" au BufEnter,BufNew *.ts let g:polyglot_disabled = ['typescript']
 let g:yats_host_keyword = 1
 set re=0
 
