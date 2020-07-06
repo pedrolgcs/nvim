@@ -41,7 +41,6 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'othree/yajs'
   Plug 'ianks/vim-tsx'
   Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-  Plug 'ap/vim-css-color'
   Plug 'hail2u/vim-css3-syntax'
 
   " utils
@@ -52,6 +51,8 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'Shougo/echodoc.vim'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'gko/vim-coloresque'
+  " Plug 'ap/vim-css-color'
+  Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 
   " git
   Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -141,6 +142,12 @@ set inccommand=split
 " au BufEnter,BufNew *.ts let g:polyglot_disabled = ['typescript']
 let g:yats_host_keyword = 1
 set re=0
+
+""""""""""""""""""""""""""""""""""""""
+" Vim Instant Markdown
+""""""""""""""""""""""""""""""""""""""
+filetype plugin on
+let g:instant_markdown_slow = 1
 
 """"""""""""""""""""""""""""""""""""""
 " NERD Commenter
