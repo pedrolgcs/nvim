@@ -51,10 +51,12 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'Shougo/echodoc.vim'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'gko/vim-coloresque'
-  " Plug 'ap/vim-css-color'
   Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
   Plug 'roman/golden-ratio'
   Plug 'ap/vim-buftabline'
+  Plug 'tpope/vim-repeat'
+  Plug 'christoomey/vim-sort-motion'
+  Plug 'christoomey/vim-system-copy'
 
   " git
   Plug 'Xuyuanp/nerdtree-git-plugin'
