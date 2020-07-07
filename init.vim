@@ -139,7 +139,7 @@ set inccommand=split
 """"""""""""""""""""""""""""""""""""""
 " Polyglot
 """"""""""""""""""""""""""""""""""""""
-" au BufEnter,BufNew *.ts let g:polyglot_disabled = ['typescript']
+au BufEnter,BufNew *.ts let g:polyglot_disabled = ['typescript']
 let g:yats_host_keyword = 1
 set re=0
 
@@ -227,7 +227,7 @@ let g:NERDTreeDirArrowCollapsible = '⬎'
 let NERDTreeShowHidden=1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
-let NERDTreeWinSize=30
+let NERDTreeWinSize=40
 let g:NERDTreeGitStatusWithFlags = 0
 let g:NERDTreeGitStatusNodeColorization = 1
 let g:NERDTreeColorMapCustom = {
