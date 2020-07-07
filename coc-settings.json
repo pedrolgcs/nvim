@@ -4,12 +4,13 @@
   "suggest.snippetIndicator": " ⭐︎",
 
   "coc.preferences.formatOnSaveFiletypes": [
+    "css",
     "javascript",
+    "javascriptreact",
     "typescript",
     "typescriptreact",
-    "json",
-    "javascriptreact",
-    "typescript.tsx"
+    "typescript.tsx",
+    "json"
   ],
   "coc.preferences.formatOnType": true,
 

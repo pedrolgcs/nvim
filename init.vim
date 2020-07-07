@@ -53,6 +53,8 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'gko/vim-coloresque'
   " Plug 'ap/vim-css-color'
   Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
+  Plug 'roman/golden-ratio'
+  Plug 'ap/vim-buftabline'
 
   " git
   Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -183,7 +185,7 @@ let g:indentLine_char_list = ['⎸']
 """"""""""""""""""""""""""""""""""""""
 " Javascript libraries syntax
 """"""""""""""""""""""""""""""""""""""
-let g:used_javascript_libs = 'jquery,underscore,backbone,react'
+let g:used_javascript_libs = 'jquery,react'
 
 """"""""""""""""""""""""""""""""""""""
 " DevIcons
@@ -227,7 +229,7 @@ let g:NERDTreeDirArrowCollapsible = '⬎'
 let NERDTreeShowHidden=1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
-let NERDTreeWinSize=40
+" let NERDTreeWinSize=30
 let g:NERDTreeGitStatusWithFlags = 0
 let g:NERDTreeGitStatusNodeColorization = 1
 let g:NERDTreeColorMapCustom = {
@@ -252,5 +254,13 @@ augroup END
 """"""""""""""""""""""""""""""""""""""
 nnoremap <leader>ev :vsplit ~/.config/nvim/init.vim<cr>
 nnoremap <leader>vs :source ~/.config/nvim/init.vim<cr>
+
+nnoremap <leader>o :tabedit 
+nnoremap <leader>t gt
+nnoremap <leader>T gT
+
+nnoremap <C-T> :bnext<CR>
+nnoremap <C-B> :bprev<CR>
+nnoremap <C-Q> :bdelete<CR>
+
 map <C-s> :w<CR>
-map <C-q> :quit<CR>
