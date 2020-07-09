@@ -51,7 +51,7 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'godlygeek/tabular'
   Plug 'Shougo/echodoc.vim'
   Plug 'editorconfig/editorconfig-vim'
-  Plug 'gko/vim-coloresque'
+  Plug 'lilydjwg/colorizer'
   Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
   Plug 'roman/golden-ratio'
   Plug 'ap/vim-buftabline'
@@ -109,7 +109,7 @@ set softtabstop=2
 set shiftwidth=2
 
 " Ignore some extensions
-set wildignore=*.class,*.zip,*.gif,*.pyc,*.swp,*.tar.*,*.pdf,node_modules/**
+set wildignore=*.class,*.zip,*.gif,*.pyc,*.swp,*.tar.*,*.pdf,node_modules/**,.git/**
 
 " COLOR SCHEME
 colorscheme dracula
@@ -162,7 +162,7 @@ let g:coc_global_extensions = [
   \ 'coc-snippets',
   \ 'coc-tsserver',
   \ 'coc-eslint', 
-  \ 'coc-prettier', 
+  \ 'coc-prettier',
   \ 'coc-styled-components',
   \ 'coc-json', 
   \ 'coc-import-cost'
@@ -221,14 +221,13 @@ nnoremap <leader>T :Tags<CR>
 nnoremap <leader>m :NERDTreeFind<cr>
 nnoremap <leader>n :NERDTreeToggle<cr>
 
-let g:NERDTreeIgnore = ['^node_modules$']
+let g:NERDTreeIgnore = ['^node_modules$', '\.git$', '\.vscode$']
 let g:NERDTreeDirArrowExpandable = '⬏'
 let g:NERDTreeDirArrowCollapsible = '⬎'
 
 let NERDTreeShowHidden=1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
-" let NERDTreeWinSize=30
 let g:NERDTreeGitStatusWithFlags = 0
 let g:NERDTreeGitStatusNodeColorization = 1
 let g:NERDTreeColorMapCustom = {

@@ -14,12 +14,8 @@
   ],
   "coc.preferences.formatOnType": true,
   "codeLens.enable": true,
-  "importCost.typescriptExtensions": [
-    "\\.tsx?$"
-  ],
-  "importCost.javascriptExtensions": [
-    "\\.jsx?$"
-  ],
+  "importCost.typescriptExtensions": ["\\.tsx?$"],
+  "importCost.javascriptExtensions": ["\\.jsx?$"],
   "importCost.bundleSizeDecoration": "both",
   "importCost.showCalculatingDecoration": true,
   "importCost.debug": false,
@@ -32,8 +28,6 @@
   "diagnostic.errorSign": "•",
   "diagnostic.warningSign": "•",
   "diagnostic.infoSign": "•",
-  "prettier.singleQuote": true,
-  "prettier.onlyUseLocalVersion": true,
   "prettier.endOfLine": "lf",
-  "prettier.eslintIntegration": true
+  "prettier.singleQuote": true
 }
