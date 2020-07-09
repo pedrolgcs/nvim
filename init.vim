@@ -30,6 +30,7 @@ call plug#begin('~/.config/nvim/bundle')
 
   " interfaces
   Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
   Plug 'tomasr/molokai'
   Plug 'dracula/vim', { 'as': 'dracula' }
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
@@ -89,9 +90,6 @@ let g:ag_working_path_mode="r"
 
 " load systax
 autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
-autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
-au BufNewFile,BufRead *.ts setlocal filetype=typescript
-au BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
 
 " Use case insensitive search, except when using capital letters
 set ignorecase
@@ -116,7 +114,6 @@ set wildignore=*.class,*.zip,*.gif,*.pyc,*.swp,*.tar.*,*.pdf,node_modules/**
 " COLOR SCHEME
 colorscheme dracula
 set termguicolors
-set t_Co=256
 
 " ENCODING
 set encoding=UTF-8

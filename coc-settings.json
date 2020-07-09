@@ -2,36 +2,38 @@
   "suggest.echodocSupport": true,
   "suggest.maxCompleteItemCount": 20,
   "suggest.snippetIndicator": " ⭐︎",
-
+  "suggest.autoTrigger": "always",
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
+    "markdown",
     "javascript",
     "javascriptreact",
     "typescript",
     "typescriptreact",
-    "typescript.tsx",
     "json"
   ],
   "coc.preferences.formatOnType": true,
-
   "codeLens.enable": true,
-
-  "importCost.typescriptExtensions": ["\\.tsx?$"],
-  "importCost.javascriptExtensions": ["\\.jsx?$"],
+  "importCost.typescriptExtensions": [
+    "\\.tsx?$"
+  ],
+  "importCost.javascriptExtensions": [
+    "\\.jsx?$"
+  ],
   "importCost.bundleSizeDecoration": "both",
   "importCost.showCalculatingDecoration": true,
   "importCost.debug": false,
-
   "eslint.filetypes": [
     "javascript",
     "typescript",
     "typescriptreact",
-    "javascriptreact",
-    "typescript.tsx"
+    "javascriptreact"
   ],
-
   "diagnostic.errorSign": "•",
   "diagnostic.warningSign": "•",
   "diagnostic.infoSign": "•",
-  "prettier.singleQuote": true
+  "prettier.singleQuote": true,
+  "prettier.onlyUseLocalVersion": true,
+  "prettier.endOfLine": "lf",
+  "prettier.eslintIntegration": true
 }
