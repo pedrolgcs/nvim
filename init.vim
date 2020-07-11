@@ -117,6 +117,9 @@ set termguicolors
 
 " ENCODING
 set encoding=UTF-8
+set guifont=FiraCode_Nerd_Font:h15
+let g:airline_powerline_fonts = 1
+
 
 " COMMAND LINE
 " Enhanced command line completion
@@ -170,8 +173,37 @@ let g:coc_global_extensions = [
 
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <F2> <Plug>(coc-rename)
+
+set cmdheight=2
+set shortmess+=c
+
+" trigger completion
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Show Documentation
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" use Tab
+inoremap <silent><expr> <TAB>
+  \ pumvisible() ? "\<C-n>" :
+  \ <SID>check_back_space() ? "\<TAB>" :
+  \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
 """"""""""""""""""""""""""""""""""""""
 " Indent Line
@@ -196,10 +228,6 @@ let g:WebDevIconsUnicodeGlyphDoubleWidth = 0
 if exists('g:loaded_webdevicons')
   call webdevicons#refresh()
 endif
-
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-nnoremap <silent> K :call CocAction('doHover')<CR>
 
 """"""""""""""""""""""""""""""""""""""
 " AirLine
@@ -252,6 +280,8 @@ augroup END
 """"""""""""""""""""""""""""""""""""""
 nnoremap <leader>ev :vsplit ~/.config/nvim/init.vim<cr>
 nnoremap <leader>vs :source ~/.config/nvim/init.vim<cr>
+
+nnoremap <leader>cr :CocRestart<cr>
 
 nnoremap <leader>o :tabedit 
 nnoremap <leader>t gt
