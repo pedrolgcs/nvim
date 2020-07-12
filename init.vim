@@ -42,7 +42,6 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'othree/yajs'
   Plug 'ianks/vim-tsx'
   Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-  Plug 'hail2u/vim-css3-syntax'
 
   " utils
   Plug 'scrooloose/nerdcommenter'
@@ -120,6 +119,8 @@ set encoding=UTF-8
 set guifont=FiraCode_Nerd_Font:h15
 let g:airline_powerline_fonts = 1
 
+" Displaying messages
+set shortmess+=c
 
 " COMMAND LINE
 " Enhanced command line completion
@@ -168,7 +169,8 @@ let g:coc_global_extensions = [
   \ 'coc-prettier',
   \ 'coc-styled-components',
   \ 'coc-json', 
-  \ 'coc-import-cost'
+  \ 'coc-import-cost',
+  \ 'coc-css'
   \ ]
 
 nmap <silent> gd <Plug>(coc-definition)
@@ -176,9 +178,6 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <F2> <Plug>(coc-rename)
-
-set cmdheight=2
-set shortmess+=c
 
 " trigger completion
 inoremap <silent><expr> <c-space> coc#refresh()
@@ -266,14 +265,6 @@ let g:NERDTreeColorMapCustom = {
     \ "Clean"     : "#87939A",
     \ "Ignored"   : "#808080"
     \ }
-
-""""""""""""""""""""""""""""""""""""""
-" Css
-""""""""""""""""""""""""""""""""""""""
-augroup VimCSS3Syntax
-  autocmd!
-  autocmd FileType css setlocal iskeyword+=-
-augroup END
 
 """"""""""""""""""""""""""""""""""""""
 " Custom Commands
