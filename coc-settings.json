@@ -3,31 +3,53 @@
   "suggest.maxCompleteItemCount": 20,
   "suggest.snippetIndicator": " ⭐︎",
   "suggest.autoTrigger": "always",
+
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
     "markdown",
     "javascript",
     "javascriptreact",
     "typescript",
-    "typescriptreact",
-    "json"
+    "typescriptreact"
   ],
   "coc.preferences.formatOnType": true,
+
   "codeLens.enable": true,
+
   "importCost.typescriptExtensions": ["\\.tsx?$"],
   "importCost.javascriptExtensions": ["\\.jsx?$"],
   "importCost.bundleSizeDecoration": "both",
   "importCost.showCalculatingDecoration": true,
   "importCost.debug": false,
+
   "eslint.filetypes": [
     "javascript",
     "typescript",
     "typescriptreact",
     "javascriptreact"
   ],
+
   "diagnostic.errorSign": "•",
   "diagnostic.warningSign": "•",
   "diagnostic.infoSign": "•",
+
   "prettier.endOfLine": "lf",
-  "prettier.singleQuote": true
+  "prettier.singleQuote": true,
+
+  "cSpellExt.enableDictionaries": ["portuguese-brazilian"],
+  "cSpell.language": "en, pt, pt_BR",
+  "cSpell.ignorePaths": [
+    "**/package-lock.json",
+    "node_modules",
+    "**/node_modules/**",
+    "**/vscode-extension/**",
+    "**/.git/objects/**",
+    ".vscode",
+    "**.vim"
+  ],
+  "cSpell.words": [],
+  "cSpell.ignoreRegExpList": [
+    "0x[0-9a-f]+",
+    "/from\\s+(['\"]).*\\1/"
+  ]
 }

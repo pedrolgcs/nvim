@@ -1,5 +1,5 @@
 " Author: Pedro Henrique
-" Souce: https://github.com/pedrolgcs/nvim
+" Source: https://github.com/pedrolgcs/nvim
 
 " LEADER KEY
 let mapleader="\<space>"
@@ -18,7 +18,7 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'mattn/emmet-vim'
   Plug 'terryma/vim-multiple-cursors'
   Plug 'jiangmiao/auto-pairs'
-  Plug 'rstacruz/vim-closer'
+  " Plug 'rstacruz/vim-closer'
   Plug 'Yggdroot/indentLine'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -26,7 +26,7 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle'  }
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
-  Plug 'christoomey/vim-tmux-navigator'
+  " Plug 'christoomey/vim-tmux-navigator'
 
   " interfaces
   Plug 'vim-airline/vim-airline'
@@ -47,7 +47,7 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'scrooloose/nerdcommenter'
   Plug 'jeffkreeftmeijer/vim-numbertoggle'
   Plug 'tpope/vim-surround'
-  Plug 'godlygeek/tabular'
+  " Plug 'godlygeek/tabular'
   Plug 'Shougo/echodoc.vim'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'lilydjwg/colorizer'
@@ -87,7 +87,7 @@ set hlsearch
 " Make Ag search from your project root
 let g:ag_working_path_mode="r"
 
-" load systax
+" load syntax
 autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
 
 " Use case insensitive search, except when using capital letters
@@ -100,8 +100,8 @@ set nobackup
 set nowritebackup
 set noswapfile
 
-" AUTO IDENTATION
-" Enable auto identation with 'spaces' instead of 'tabs'
+" AUTO INDENTATION
+" Enable auto indentation with 'spaces' instead of 'tabs'
 set smartindent
 set expandtab
 set softtabstop=2
@@ -163,13 +163,13 @@ let g:NERDSpaceDelims = 1
 " COC
 """"""""""""""""""""""""""""""""""""""
 let g:coc_global_extensions = [
-  \ 'coc-snippets',
   \ 'coc-tsserver',
   \ 'coc-eslint', 
   \ 'coc-prettier',
   \ 'coc-styled-components',
-  \ 'coc-json', 
   \ 'coc-import-cost',
+  \ 'coc-spell-checker',
+  \ 'coc-cspell-dicts',
   \ 'coc-css'
   \ ]
 
@@ -204,12 +204,16 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
+" Coc Spell checker
+vmap <leader>a <Plug>(coc-codeaction-selected)
+nmap <leader>a <Plug>(coc-codeaction-selected)
+
 """"""""""""""""""""""""""""""""""""""
 " Indent Line
 """"""""""""""""""""""""""""""""""""""
 let g:vim_json_syntax_conceal = 0
 let g:vim_markdown_conceal = 0
-let g:indentLine_color_gui = '#A4E57E'
+let g:indentLine_color_gui = '#80ffea'
 let g:indentLine_char_list = ['⎸']
 
 """"""""""""""""""""""""""""""""""""""
@@ -273,10 +277,6 @@ nnoremap <leader>ev :vsplit ~/.config/nvim/init.vim<cr>
 nnoremap <leader>vs :source ~/.config/nvim/init.vim<cr>
 
 nnoremap <leader>cr :CocRestart<cr>
-
-nnoremap <leader>o :tabedit 
-nnoremap <leader>t gt
-nnoremap <leader>T gT
 
 nnoremap <C-T> :bnext<CR>
 nnoremap <C-B> :bprev<CR>
