@@ -18,7 +18,6 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'mattn/emmet-vim'
   Plug 'terryma/vim-multiple-cursors'
   Plug 'jiangmiao/auto-pairs'
-  " Plug 'rstacruz/vim-closer'
   Plug 'Yggdroot/indentLine'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -26,7 +25,6 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle'  }
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
-  " Plug 'christoomey/vim-tmux-navigator'
 
   " interfaces
   Plug 'vim-airline/vim-airline'
@@ -47,7 +45,6 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'scrooloose/nerdcommenter'
   Plug 'jeffkreeftmeijer/vim-numbertoggle'
   Plug 'tpope/vim-surround'
-  " Plug 'godlygeek/tabular'
   Plug 'Shougo/echodoc.vim'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'lilydjwg/colorizer'

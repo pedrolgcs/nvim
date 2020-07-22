@@ -51,5 +51,8 @@
   "cSpell.ignoreRegExpList": [
     "0x[0-9a-f]+",
     "/from\\s+(['\"]).*\\1/"
+  ],
+  "cSpell.userWords": [
+    "smtp"
   ]
 }
