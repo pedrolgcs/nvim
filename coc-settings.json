@@ -5,7 +5,7 @@
   "suggest.autoTrigger": "always",
 
   "coc.preferences.formatOnSaveFiletypes": [
-    "css",
+    "json",
     "markdown",
     "javascript",
     "javascriptreact",
@@ -50,9 +50,9 @@
   "cSpell.words": [],
   "cSpell.ignoreRegExpList": [
     "0x[0-9a-f]+",
-    "/from\\s+(['\"]).*\\1/"
+    "/from\\s+(['\"]).*\\1/",
+    "/\\(.*\\.(jpg|jpeg|png|md|gif|JPG|JPEG|PNG|MD|GIF)\\)/g",
+    "/((http|https|ftp|git)\\S*)/g"
   ],
-  "cSpell.userWords": [
-    "smtp"
-  ]
+  "cSpell.userWords": ["smtp"]
 }

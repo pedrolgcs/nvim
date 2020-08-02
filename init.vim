@@ -49,7 +49,7 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'editorconfig/editorconfig-vim'
   Plug 'lilydjwg/colorizer'
   Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
-  Plug 'roman/golden-ratio'
+  " Plug 'roman/golden-ratio'
   Plug 'ap/vim-buftabline'
   Plug 'tpope/vim-repeat'
   Plug 'christoomey/vim-sort-motion'
@@ -80,6 +80,12 @@ set guicursor=n:blinkon1
 " SEARCH
 " Highlight search term. Use :nohl to redraw screen and disable highlight
 set hlsearch
+
+" Folding
+set foldmethod=indent   
+set foldnestmax=10
+set nofoldenable
+set foldlevel=2
 
 " Make Ag search from your project root
 let g:ag_working_path_mode="r"
@@ -113,7 +119,7 @@ set termguicolors
 
 " ENCODING
 set encoding=UTF-8
-set guifont=FiraCode_Nerd_Font:h15
+set guifont=FiraCode_Nerd_Font:h16
 let g:airline_powerline_fonts = 1
 
 " Displaying messages
@@ -252,6 +258,7 @@ nnoremap <leader>n :NERDTreeToggle<cr>
 let g:NERDTreeIgnore = ['^node_modules$', '\.git$', '\.vscode$']
 let g:NERDTreeDirArrowExpandable = '⬏'
 let g:NERDTreeDirArrowCollapsible = '⬎'
+let g:NERDTreeWinSize=40
 
 let NERDTreeShowHidden=1
 let NERDTreeMinimalUI = 1
