@@ -49,7 +49,6 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'editorconfig/editorconfig-vim'
   Plug 'lilydjwg/colorizer'
   Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
-  " Plug 'roman/golden-ratio'
   Plug 'ap/vim-buftabline'
   Plug 'tpope/vim-repeat'
   Plug 'christoomey/vim-sort-motion'
@@ -68,6 +67,9 @@ call plug#end()
 
 " MOVING BETWEEN FILES
 set hidden
+
+" Column
+set colorcolumn=80
 
 " Confirm save file
 set confirm
@@ -148,7 +150,6 @@ set inccommand=split
 " Polyglot
 """"""""""""""""""""""""""""""""""""""
 au BufEnter,BufNew *.ts let g:polyglot_disabled = ['typescript']
-let g:yats_host_keyword = 1
 set re=0
 
 """"""""""""""""""""""""""""""""""""""
