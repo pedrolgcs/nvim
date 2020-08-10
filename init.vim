@@ -29,17 +29,17 @@ call plug#begin('~/.config/nvim/bundle')
   " interfaces
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-  Plug 'tomasr/molokai'
   Plug 'dracula/vim', { 'as': 'dracula' }
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
   Plug 'ryanoasis/vim-devicons'
 
   " languages
-  Plug 'sheerun/vim-polyglot'
   Plug 'othree/javascript-libraries-syntax.vim'
   Plug 'othree/yajs'
-  Plug 'ianks/vim-tsx'
+  Plug 'chemzqm/vim-jsx-improve'
+  " Plug 'ianks/vim-tsx'
   Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+  Plug 'sheerun/vim-polyglot'
 
   " utils
   Plug 'scrooloose/nerdcommenter'
@@ -50,6 +50,7 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'lilydjwg/colorizer'
   Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
   Plug 'ap/vim-buftabline'
+  Plug 'honza/vim-snippets' | Plug 'SirVer/ultisnips'
   Plug 'tpope/vim-repeat'
   Plug 'christoomey/vim-sort-motion'
   Plug 'christoomey/vim-system-copy'
@@ -83,6 +84,7 @@ set confirm
 " SYNTAX
 " Enable syntax highlighting
 syntax on
+syntax enable
 set guicursor=n:blinkon1
 
 " SEARCH
@@ -156,9 +158,9 @@ set inccommand=split
 """"""""""""""""""""""""""""""""""""""
 " Polyglot
 """"""""""""""""""""""""""""""""""""""
-" au BufEnter,BufNew *.ts let g:polyglot_disabled = ['typescript']
+au BufEnter,BufNew *.ts let g:polyglot_disabled = ['typescript']
 set re=0
-let g:polyglot_disabled = ['typescript']
+" let g:polyglot_disabled = ['typescript']
 
 """"""""""""""""""""""""""""""""""""""
 " Vim Instant Markdown
