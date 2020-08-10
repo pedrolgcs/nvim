@@ -68,6 +68,12 @@ call plug#end()
 " MOVING BETWEEN FILES
 set hidden
 
+" Show 3 lines of context around the cursor.
+set scrolloff=3
+
+" Set the terminal's title
+set title
+
 " Column
 set colorcolumn=80
 
@@ -94,6 +100,7 @@ let g:ag_working_path_mode="r"
 
 " load syntax
 autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
+autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 
 " Use case insensitive search, except when using capital letters
 set ignorecase
@@ -149,8 +156,9 @@ set inccommand=split
 """"""""""""""""""""""""""""""""""""""
 " Polyglot
 """"""""""""""""""""""""""""""""""""""
-au BufEnter,BufNew *.ts let g:polyglot_disabled = ['typescript']
+" au BufEnter,BufNew *.ts let g:polyglot_disabled = ['typescript']
 set re=0
+let g:polyglot_disabled = ['typescript']
 
 """"""""""""""""""""""""""""""""""""""
 " Vim Instant Markdown
