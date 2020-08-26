@@ -267,11 +267,17 @@ nnoremap <leader>m :NERDTreeFind<cr>
 nnoremap <leader>n :NERDTreeToggle<cr>
 
 let g:NERDTreeIgnore = ['^node_modules$', '\.git$', '\.vscode$']
+let g:NERDTreeAutoDeleteBuffer = 1
 let g:NERDTreeDirArrowExpandable = '⬏'
 let g:NERDTreeDirArrowCollapsible = '⬎'
-let g:NERDTreeWinSize=40
+let g:NERDTreeWinSize= 40
+let g:NERDTreeGitStatusUseNerdFonts = 1
+let g:NERDTreeGitStatusConcealBrackets = 0
 
-let NERDTreeShowHidden=1
+" ignore warning (be remove latter)
+let g:NERDTreeGitStatusLogLevel = 3
+
+let NERDTreeShowHidden = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let g:NERDTreeGitStatusWithFlags = 0
