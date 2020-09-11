@@ -37,7 +37,10 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'othree/javascript-libraries-syntax.vim'
   Plug 'chemzqm/vim-jsx-improve'
   Plug 'ianks/vim-tsx'
+  Plug 'HerringtonDarkholme/yats.vim'
+  Plug 'othree/yajs'
   Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+  Plug 'ekalinin/Dockerfile.vim'
   " Plug 'sheerun/vim-polyglot'
 
   Plug 'pangloss/vim-javascript'
