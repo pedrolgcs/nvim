@@ -35,12 +35,15 @@ call plug#begin('~/.config/nvim/bundle')
 
   " languages
   Plug 'othree/javascript-libraries-syntax.vim'
-  Plug 'othree/yajs'
   Plug 'chemzqm/vim-jsx-improve'
-  " Plug 'ianks/vim-tsx'
+  Plug 'ianks/vim-tsx'
   Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-  Plug 'sheerun/vim-polyglot'
+  " Plug 'sheerun/vim-polyglot'
 
+  Plug 'pangloss/vim-javascript'
+  Plug 'leafgarland/typescript-vim'
+  Plug 'peitalin/vim-jsx-typescript'
+  
   " utils
   Plug 'scrooloose/nerdcommenter'
   Plug 'jeffkreeftmeijer/vim-numbertoggle'
@@ -74,9 +77,6 @@ set scrolloff=3
 
 " Set the terminal's title
 set title
-
-" Column
-set colorcolumn=80
 
 " Confirm save file
 set confirm
@@ -125,8 +125,11 @@ set shiftwidth=2
 set wildignore=*.class,*.zip,*.gif,*.pyc,*.swp,*.tar.*,*.pdf,node_modules/**,.git/**
 
 " COLOR SCHEME
+if (has("termguicolors"))
+ set termguicolors
+endi
+
 colorscheme dracula
-set termguicolors
 
 " ENCODING
 set encoding=UTF-8
@@ -158,9 +161,8 @@ set inccommand=split
 """"""""""""""""""""""""""""""""""""""
 " Polyglot
 """"""""""""""""""""""""""""""""""""""
-au BufEnter,BufNew *.ts let g:polyglot_disabled = ['typescript']
+" au BufEnter,BufNew *.ts let g:polyglot_disabled = ['typescript']
 set re=0
-" let g:polyglot_disabled = ['typescript']
 
 """"""""""""""""""""""""""""""""""""""
 " Vim Instant Markdown
@@ -265,6 +267,9 @@ nnoremap <leader>T :Tags<CR>
 """"""""""""""""""""""""""""""""""""""
 nnoremap <leader>m :NERDTreeFind<cr>
 nnoremap <leader>n :NERDTreeToggle<cr>
+
+" Automaticaly close nvim if NERDTree is only thing left open
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 let g:NERDTreeIgnore = ['^node_modules$', '\.git$', '\.vscode$']
 let g:NERDTreeAutoDeleteBuffer = 1
