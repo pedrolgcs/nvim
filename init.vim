@@ -54,7 +54,7 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'Shougo/echodoc.vim'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'lilydjwg/colorizer'
-  Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
+  " Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
   Plug 'ap/vim-buftabline'
   Plug 'honza/vim-snippets' | Plug 'SirVer/ultisnips'
   Plug 'tpope/vim-repeat'
@@ -133,6 +133,9 @@ if (has("termguicolors"))
 endi
 
 colorscheme dracula
+
+" Conceal
+let g:vim_markdown_conceal=0
 
 " ENCODING
 set encoding=UTF-8
@@ -230,8 +233,7 @@ nmap <leader>a <Plug>(coc-codeaction-selected)
 """"""""""""""""""""""""""""""""""""""
 " Indent Line
 """"""""""""""""""""""""""""""""""""""
-let g:vim_json_syntax_conceal = 0
-let g:vim_markdown_conceal = 0
+let g:indentLine_setConceal = 0
 let g:indentLine_color_gui = '#80ffea'
 let g:indentLine_char_list = ['⎸']
 
