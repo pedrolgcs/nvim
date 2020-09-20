@@ -34,6 +34,7 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'ryanoasis/vim-devicons'
 
   " languages
+  Plug 'elzr/vim-json'
   Plug 'othree/javascript-libraries-syntax.vim'
   Plug 'chemzqm/vim-jsx-improve'
   Plug 'ianks/vim-tsx'
@@ -135,6 +136,7 @@ endi
 colorscheme dracula
 
 " Conceal
+set conceallevel=0
 let g:vim_markdown_conceal=0
 
 " ENCODING
@@ -233,9 +235,10 @@ nmap <leader>a <Plug>(coc-codeaction-selected)
 """"""""""""""""""""""""""""""""""""""
 " Indent Line
 """"""""""""""""""""""""""""""""""""""
-let g:indentLine_setConceal = 0
 let g:indentLine_color_gui = '#80ffea'
 let g:indentLine_char_list = ['⎸']
+let g:indentLine_enabled = 1
+let g:vim_json_syntax_conceal = 0
 
 """"""""""""""""""""""""""""""""""""""
 " Javascript libraries syntax
