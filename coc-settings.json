@@ -13,6 +13,7 @@
     "typescriptreact"
   ],
   "coc.preferences.formatOnType": true,
+  "tsserver.formatOnType": true,
 
   "codeLens.enable": true,
 
@@ -28,6 +29,7 @@
     "typescriptreact",
     "javascriptreact"
   ],
+  "eslint.autoFixOnSave": true,
 
   "diagnostic.errorSign": "•",
   "diagnostic.warningSign": "•",
@@ -35,6 +37,7 @@
 
   "prettier.endOfLine": "lf",
   "prettier.singleQuote": true,
+  "prettier.disableSuccessMessage": true,
 
   "cSpellExt.enableDictionaries": ["portuguese-brazilian"],
   "cSpell.language": "en, pt, pt_BR",

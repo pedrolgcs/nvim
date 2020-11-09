@@ -35,20 +35,18 @@ call plug#begin('~/.config/nvim/bundle')
 
   " languages
   Plug 'elzr/vim-json'
-  Plug 'othree/javascript-libraries-syntax.vim'
-  Plug 'chemzqm/vim-jsx-improve'
-  Plug 'ianks/vim-tsx'
-  Plug 'HerringtonDarkholme/yats.vim'
-  Plug 'othree/yajs'
-  Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
   Plug 'ekalinin/Dockerfile.vim'
-  " Plug 'sheerun/vim-polyglot'
+  Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
   Plug 'pangloss/vim-javascript'
   Plug 'leafgarland/typescript-vim'
   Plug 'peitalin/vim-jsx-typescript'
+  Plug 'ianks/vim-tsx'
+  Plug 'jparise/vim-graphql'
+  Plug 'HerringtonDarkholme/yats.vim'
   
   " utils
+  Plug 'tpope/vim-sensible'
   Plug 'scrooloose/nerdcommenter'
   Plug 'jeffkreeftmeijer/vim-numbertoggle'
   Plug 'tpope/vim-surround'
@@ -167,12 +165,6 @@ set autoread
 set inccommand=split
 
 """"""""""""""""""""""""""""""""""""""
-" Polyglot
-""""""""""""""""""""""""""""""""""""""
-" au BufEnter,BufNew *.ts let g:polyglot_disabled = ['typescript']
-set re=0
-
-""""""""""""""""""""""""""""""""""""""
 " Vim Instant Markdown
 """"""""""""""""""""""""""""""""""""""
 filetype plugin on
@@ -188,14 +180,20 @@ let g:NERDSpaceDelims = 1
 """"""""""""""""""""""""""""""""""""""
 let g:coc_global_extensions = [
   \ 'coc-tsserver',
-  \ 'coc-eslint', 
-  \ 'coc-prettier',
   \ 'coc-styled-components',
   \ 'coc-import-cost',
   \ 'coc-spell-checker',
   \ 'coc-cspell-dicts',
   \ 'coc-css'
   \ ]
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
+  let g:coc_global_extensions += ['coc-prettier']
+endif
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
+  let g:coc_global_extensions += ['coc-eslint']
+endif
 
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -250,7 +248,7 @@ let g:used_javascript_libs = 'jquery,react'
 """"""""""""""""""""""""""""""""""""""
 let g:webdevicons_enable = 1
 let g:webdevicons_enable_nerdtree = 1
-let g:WebDevIconsUnicodeGlyphDoubleWidth = 0
+let g:WebDevIconsNerdTreeBeforeGlyphPadding = ''
 
 if exists('g:loaded_webdevicons')
   call webdevicons#refresh()
@@ -286,9 +284,6 @@ let g:NERDTreeDirArrowCollapsible = '⬎'
 let g:NERDTreeWinSize= 40
 let g:NERDTreeGitStatusUseNerdFonts = 1
 let g:NERDTreeGitStatusConcealBrackets = 0
-
-" ignore warning (be remove latter)
-let g:NERDTreeGitStatusLogLevel = 3
 
 let NERDTreeShowHidden = 1
 let NERDTreeMinimalUI = 1
