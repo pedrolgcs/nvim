@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =3
+let g:netrw_dirhistcnt =4
+let g:netrw_dirhist_4='/home/peter/.npmrcs'
 let g:netrw_dirhist_3='/home/peter/.tmux'
 let g:netrw_dirhist_2='/home/peter/.config/nvim/bundle'
 let g:netrw_dirhist_1='/home/peter/www/GoBarber/backend/src/services'

@@ -15,6 +15,7 @@ set t_ut=
 call plug#begin('~/.config/nvim/bundle')
 
   " autocomplete
+  Plug 'isRuslan/vim-es6'
   Plug 'mattn/emmet-vim'
   Plug 'terryma/vim-multiple-cursors'
   Plug 'jiangmiao/auto-pairs'
@@ -30,21 +31,24 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'dracula/vim', { 'as': 'dracula' }
+  Plug 'morhetz/gruvbox'
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
   Plug 'ryanoasis/vim-devicons'
 
   " languages
-  Plug 'elzr/vim-json'
   Plug 'ekalinin/Dockerfile.vim'
-  Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-
   Plug 'pangloss/vim-javascript'
-  Plug 'leafgarland/typescript-vim'
   Plug 'peitalin/vim-jsx-typescript'
-  Plug 'ianks/vim-tsx'
-  Plug 'jparise/vim-graphql'
   Plug 'HerringtonDarkholme/yats.vim'
-  
+  Plug 'leafgarland/typescript-vim'
+  Plug 'maxmellon/vim-jsx-pretty'
+  Plug 'jparise/vim-graphql'
+  Plug 'maxmellon/vim-jsx-pretty'
+
+  Plug 'othree/yajs.vim', {'for': 'javascript'}
+  Plug 'ianks/vim-tsx'
+  " Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+
   " utils
   Plug 'tpope/vim-sensible'
   Plug 'scrooloose/nerdcommenter'
@@ -53,15 +57,13 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'Shougo/echodoc.vim'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'lilydjwg/colorizer'
-  " Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
   Plug 'ap/vim-buftabline'
-  Plug 'honza/vim-snippets' | Plug 'SirVer/ultisnips'
+  Plug 'honza/vim-snippets'
   Plug 'tpope/vim-repeat'
   Plug 'christoomey/vim-sort-motion'
   Plug 'christoomey/vim-system-copy'
 
   " git
-  Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'airblade/vim-gitgutter'
   Plug 'tpope/vim-fugitive'
 
@@ -88,6 +90,7 @@ set confirm
 syntax on
 syntax enable
 set guicursor=n:blinkon1
+filetype plugin indent on
 
 " SEARCH
 " Highlight search term. Use :nohl to redraw screen and disable highlight
@@ -105,6 +108,13 @@ let g:ag_working_path_mode="r"
 " load syntax
 autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
 autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
+
+" AUTOCMD 
+" by default .ts file are not identified as typescript and .tsx files are not
+" identified as typescript react file, so add following
+au BufNewFile,BufRead *.ts setlocal filetype=typescript
+au BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
+" == AUTOCMD END ================================
 
 " Use case insensitive search, except when using capital letters
 set ignorecase
@@ -129,7 +139,7 @@ set wildignore=*.class,*.zip,*.gif,*.pyc,*.swp,*.tar.*,*.pdf,node_modules/**,.gi
 " COLOR SCHEME
 if (has("termguicolors"))
  set termguicolors
-endi
+endif
 
 colorscheme dracula
 
@@ -139,7 +149,6 @@ let g:vim_markdown_conceal=0
 
 " ENCODING
 set encoding=UTF-8
-set guifont=FiraCode_Nerd_Font:h16
 let g:airline_powerline_fonts = 1
 
 " Displaying messages
@@ -180,12 +189,14 @@ let g:NERDSpaceDelims = 1
 """"""""""""""""""""""""""""""""""""""
 let g:coc_global_extensions = [
   \ 'coc-tsserver',
-  \ 'coc-styled-components',
   \ 'coc-import-cost',
+  \ 'coc-styled-components',
   \ 'coc-spell-checker',
   \ 'coc-cspell-dicts',
-  \ 'coc-css'
+  \ 'coc-css',
+  \ 'coc-json'
   \ ]
+
 
 if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
   let g:coc_global_extensions += ['coc-prettier']
@@ -239,11 +250,6 @@ let g:indentLine_enabled = 1
 let g:vim_json_syntax_conceal = 0
 
 """"""""""""""""""""""""""""""""""""""
-" Javascript libraries syntax
-""""""""""""""""""""""""""""""""""""""
-let g:used_javascript_libs = 'jquery,react'
-
-""""""""""""""""""""""""""""""""""""""
 " DevIcons
 """"""""""""""""""""""""""""""""""""""
 let g:webdevicons_enable = 1
@@ -275,21 +281,17 @@ nnoremap <leader>m :NERDTreeFind<cr>
 nnoremap <leader>n :NERDTreeToggle<cr>
 
 " Automaticaly close nvim if NERDTree is only thing left open
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 let g:NERDTreeIgnore = ['^node_modules$', '\.git$', '\.vscode$']
 let g:NERDTreeAutoDeleteBuffer = 1
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 let g:NERDTreeWinSize= 40
-let g:NERDTreeGitStatusUseNerdFonts = 1
-let g:NERDTreeGitStatusConcealBrackets = 0
 
 let NERDTreeShowHidden = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
-let g:NERDTreeGitStatusWithFlags = 0
-let g:NERDTreeGitStatusNodeColorization = 1
 let g:NERDTreeColorMapCustom = {
     \ "Modified"  : "#528AB3",
     \ "Staged"    : "#538B54",
