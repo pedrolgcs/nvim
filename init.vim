@@ -37,19 +37,22 @@ call plug#begin('~/.config/nvim/bundle')
 
   " languages
   Plug 'ekalinin/Dockerfile.vim'
+
   Plug 'pangloss/vim-javascript'
   Plug 'peitalin/vim-jsx-typescript'
   Plug 'HerringtonDarkholme/yats.vim'
   Plug 'leafgarland/typescript-vim'
-  Plug 'maxmellon/vim-jsx-pretty'
-  Plug 'jparise/vim-graphql'
-  Plug 'maxmellon/vim-jsx-pretty'
-
-  Plug 'othree/yajs.vim', {'for': 'javascript'}
+  Plug 'MaxMEllon/vim-jsx-pretty'
   Plug 'ianks/vim-tsx'
+  Plug 'othree/yajs.vim', {'for': 'javascript'}
+
+  Plug 'jparise/vim-graphql'
   " Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
   " utils
+  Plug 'https://github.com/unblevable/quick-scope'
+  Plug 'alvan/vim-closetag'
+  Plug 'MattesGroeger/vim-bookmarks'
   Plug 'tpope/vim-sensible'
   Plug 'scrooloose/nerdcommenter'
   Plug 'jeffkreeftmeijer/vim-numbertoggle'
@@ -105,7 +108,10 @@ set foldlevel=2
 " Make Ag search from your project root
 let g:ag_working_path_mode="r"
 
-" load syntax
+" Correct comment highlight
+autocmd FileType json syntax match Comment +\/\/.\+$+
+
+" Highlight from start of file for TS and JS buffers
 autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
 autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 
@@ -132,6 +138,10 @@ set smartindent
 set expandtab
 set softtabstop=2
 set shiftwidth=2
+set shiftround
+
+set listchars=tab:▸\ ,eol:¬
+set list
 
 " Ignore some extensions
 set wildignore=*.class,*.zip,*.gif,*.pyc,*.swp,*.tar.*,*.pdf,node_modules/**,.git/**
@@ -173,6 +183,9 @@ set autoread
 " Show preview
 set inccommand=split
 
+" Bind <F3> to clear search history "
+map <F3> *:let @/=""
+
 """"""""""""""""""""""""""""""""""""""
 " Vim Instant Markdown
 """"""""""""""""""""""""""""""""""""""
@@ -193,6 +206,7 @@ let g:coc_global_extensions = [
   \ 'coc-styled-components',
   \ 'coc-spell-checker',
   \ 'coc-cspell-dicts',
+  \ 'coc-pairs',
   \ 'coc-css',
   \ 'coc-json'
   \ ]
