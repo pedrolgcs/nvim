@@ -44,13 +44,12 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'leafgarland/typescript-vim'
   Plug 'MaxMEllon/vim-jsx-pretty'
   Plug 'ianks/vim-tsx'
-  Plug 'othree/yajs.vim', {'for': 'javascript'}
 
   Plug 'jparise/vim-graphql'
   " Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
   " utils
-  Plug 'https://github.com/unblevable/quick-scope'
+  Plug 'unblevable/quick-scope'
   Plug 'alvan/vim-closetag'
   Plug 'MattesGroeger/vim-bookmarks'
   Plug 'tpope/vim-sensible'
@@ -79,11 +78,17 @@ call plug#end()
 " MOVING BETWEEN FILES
 set hidden
 
+let g:python_host_prog = "/usr/bin/python2"
+let g:python3_host_prog = "/usr/bin/python3"
+
 " Show 3 lines of context around the cursor.
 set scrolloff=3
 
 " Set the terminal's title
 set title
+
+" Collum
+set colorcolumn=80
 
 " Confirm save file
 set confirm
@@ -118,8 +123,10 @@ autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 " AUTOCMD 
 " by default .ts file are not identified as typescript and .tsx files are not
 " identified as typescript react file, so add following
-au BufNewFile,BufRead *.ts setlocal filetype=typescript
-au BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
+" au BufNewFile,BufRead *.ts setlocal filetype=typescript
+" au BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
+autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
+
 " == AUTOCMD END ================================
 
 " Use case insensitive search, except when using capital letters
@@ -187,10 +194,18 @@ set inccommand=split
 map <F3> *:let @/=""
 
 """"""""""""""""""""""""""""""""""""""
+" quick-scope
+""""""""""""""""""""""""""""""""""""""
+let g:qs_highlight_on_keys = ['f', 'F']
+
+
+""""""""""""""""""""""""""""""""""""""
 " Vim Instant Markdown
 """"""""""""""""""""""""""""""""""""""
 filetype plugin on
 let g:instant_markdown_slow = 1
+
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml, *.tsx'
 
 """"""""""""""""""""""""""""""""""""""
 " NERD Commenter
