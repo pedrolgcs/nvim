@@ -36,17 +36,15 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'ryanoasis/vim-devicons'
 
   " languages
+  Plug 'elzr/vim-json'
   Plug 'ekalinin/Dockerfile.vim'
-
   Plug 'pangloss/vim-javascript'
   Plug 'peitalin/vim-jsx-typescript'
   Plug 'HerringtonDarkholme/yats.vim'
   Plug 'leafgarland/typescript-vim'
   Plug 'MaxMEllon/vim-jsx-pretty'
   Plug 'ianks/vim-tsx'
-
   Plug 'jparise/vim-graphql'
-  " Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
   " utils
   Plug 'unblevable/quick-scope'
@@ -127,7 +125,10 @@ autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 " au BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
 autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
 
-" == AUTOCMD END ================================
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
 
 " Use case insensitive search, except when using capital letters
 set ignorecase
