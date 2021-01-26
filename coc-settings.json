@@ -20,12 +20,6 @@
 
   "codeLens.enable": true,
 
-  "importCost.typescriptExtensions": ["\\.tsx?$"],
-  "importCost.javascriptExtensions": ["\\.jsx?$"],
-  "importCost.bundleSizeDecoration": "both",
-  "importCost.showCalculatingDecoration": true,
-  "importCost.debug": false,
-
   "eslint.filetypes": [
     "javascript",
     "typescript",

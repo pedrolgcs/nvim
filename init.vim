@@ -36,6 +36,7 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'ryanoasis/vim-devicons'
 
   " languages
+  " Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
   Plug 'elzr/vim-json'
   Plug 'ekalinin/Dockerfile.vim'
   Plug 'pangloss/vim-javascript'
@@ -157,9 +158,16 @@ set wildignore=*.class,*.zip,*.gif,*.pyc,*.swp,*.tar.*,*.pdf,node_modules/**,.gi
 " COLOR SCHEME
 if (has("termguicolors"))
  set termguicolors
+ set t_Co=256
 endif
 
-colorscheme dracula
+" colorscheme dracula
+" colorscheme monokai
+" colorscheme molokai
+
+colorscheme gruvbox
+set background=dark
+
 
 " Conceal
 set conceallevel=0
@@ -218,7 +226,6 @@ let g:NERDSpaceDelims = 1
 """"""""""""""""""""""""""""""""""""""
 let g:coc_global_extensions = [
   \ 'coc-tsserver',
-  \ 'coc-import-cost',
   \ 'coc-styled-components',
   \ 'coc-spell-checker',
   \ 'coc-cspell-dicts',
@@ -339,8 +346,10 @@ nnoremap <leader>vs :source ~/.config/nvim/init.vim<cr>
 
 nnoremap <leader>cr :CocRestart<cr>
 
+" change tab
 nnoremap <C-T> :bnext<CR>
 nnoremap <C-B> :bprev<CR>
+
 nnoremap <C-Q> :bdelete<CR>
 
 map <C-s> :w<CR>
