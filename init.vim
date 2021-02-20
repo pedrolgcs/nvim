@@ -161,12 +161,12 @@ if (has("termguicolors"))
  set t_Co=256
 endif
 
-" colorscheme dracula
+colorscheme dracula
 " colorscheme monokai
 " colorscheme molokai
 
-colorscheme gruvbox
-set background=dark
+" colorscheme gruvbox
+" set background=dark
 
 
 " Conceal
