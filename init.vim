@@ -4,20 +4,57 @@
 " LEADER KEY
 let mapleader="\<space>"
 
-" COMPATIBILITY
-" Set 'nocompatible' to avoid unexpected things that your distro might have
+
+" --------------- Basic Setup ---------------
+syntax on
+syntax enable
+set guicursor=n:blinkon1
+filetype plugin indent on
 set nocompatible
 set t_ut=
+set confirm
+set title
+set number
+set relativenumber
+set lazyredraw
+set nocursorline
+set scrolloff=4
+set colorcolumn=80
+set hlsearch
+set ignorecase
+set smartcase
+set autoindent
+set encoding=UTF-8
+set smartindent
+set expandtab
+set softtabstop=2
+set shiftwidth=2
+set shiftround
+set hidden
+set nobackup
+set nowritebackup
+set noswapfile
+set wildmenu
+set shortmess+=c
+set wildmode=list:longest
+set incsearch
+set nowrap
+set autoread
+set foldmethod=indent   
+set foldnestmax=10
+set nofoldenable
+set foldlevel=2
+set list
+set wildignore=*.class,*.zip,*.gif,*.pyc,*.swp,*.tar.*,*.pdf,node_modules/**,.git/**
 
-" ============================================================================ "
-" ===                               PLUGINS                                === "
-" ============================================================================ "
+let g:python_host_prog = "/usr/bin/python2"
+let g:python3_host_prog = "/usr/bin/python3"
+
+" --------------- Vim-Plug ---------------
 call plug#begin('~/.config/nvim/bundle')
 
   " autocomplete
-  Plug 'isRuslan/vim-es6'
   Plug 'mattn/emmet-vim'
-  Plug 'terryma/vim-multiple-cursors'
   Plug 'jiangmiao/auto-pairs'
   Plug 'Yggdroot/indentLine'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -31,83 +68,38 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'dracula/vim', { 'as': 'dracula' }
-  Plug 'morhetz/gruvbox'
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
   Plug 'ryanoasis/vim-devicons'
 
   " languages
-  " Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-  Plug 'elzr/vim-json'
-  Plug 'ekalinin/Dockerfile.vim'
-  Plug 'pangloss/vim-javascript'
-  Plug 'peitalin/vim-jsx-typescript'
-  Plug 'HerringtonDarkholme/yats.vim'
-  Plug 'leafgarland/typescript-vim'
-  Plug 'MaxMEllon/vim-jsx-pretty'
-  Plug 'ianks/vim-tsx'
-  Plug 'jparise/vim-graphql'
+  Plug 'sheerun/vim-polyglot'
+  Plug 'editorconfig/editorconfig-vim'
+  Plug 'hail2u/vim-css3-syntax'
 
   " utils
+  Plug 'terryma/vim-multiple-cursors'
+  Plug 'ap/vim-css-color'
   Plug 'unblevable/quick-scope'
   Plug 'alvan/vim-closetag'
   Plug 'MattesGroeger/vim-bookmarks'
-  Plug 'tpope/vim-sensible'
   Plug 'scrooloose/nerdcommenter'
   Plug 'jeffkreeftmeijer/vim-numbertoggle'
   Plug 'tpope/vim-surround'
   Plug 'Shougo/echodoc.vim'
   Plug 'editorconfig/editorconfig-vim'
-  Plug 'lilydjwg/colorizer'
   Plug 'ap/vim-buftabline'
   Plug 'honza/vim-snippets'
   Plug 'tpope/vim-repeat'
   Plug 'christoomey/vim-sort-motion'
   Plug 'christoomey/vim-system-copy'
 
+
   " git
   Plug 'airblade/vim-gitgutter'
-  Plug 'tpope/vim-fugitive'
 
 call plug#end()
 
-"""""""""""""""""""""""""""""""""""
-" Commons Config
-"""""""""""""""""""""""""""""""""""
-
-" MOVING BETWEEN FILES
-set hidden
-
-let g:python_host_prog = "/usr/bin/python2"
-let g:python3_host_prog = "/usr/bin/python3"
-
-" Show 3 lines of context around the cursor.
-set scrolloff=3
-
-" Set the terminal's title
-set title
-
-" Collum
-set colorcolumn=80
-
-" Confirm save file
-set confirm
-
-" SYNTAX
-" Enable syntax highlighting
-syntax on
-syntax enable
-set guicursor=n:blinkon1
-filetype plugin indent on
-
-" SEARCH
-" Highlight search term. Use :nohl to redraw screen and disable highlight
-set hlsearch
-
-" Folding
-set foldmethod=indent   
-set foldnestmax=10
-set nofoldenable
-set foldlevel=2
+" --------------- Plugins Settings ---------------
 
 " Make Ag search from your project root
 let g:ag_working_path_mode="r"
@@ -119,85 +111,17 @@ autocmd FileType json syntax match Comment +\/\/.\+$+
 autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
 autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 
-" AUTOCMD 
-" by default .ts file are not identified as typescript and .tsx files are not
-" identified as typescript react file, so add following
-" au BufNewFile,BufRead *.ts setlocal filetype=typescript
-" au BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
-autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
-
-" For conceal markers.
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
-
-" Use case insensitive search, except when using capital letters
-set ignorecase
-set smartcase
-set autoindent
-
-" Some servers have issues with backup files, see #649
-set nobackup
-set nowritebackup
-set noswapfile
-
-" AUTO INDENTATION
-" Enable auto indentation with 'spaces' instead of 'tabs'
-set smartindent
-set expandtab
-set softtabstop=2
-set shiftwidth=2
-set shiftround
-
-set listchars=tab:▸\ ,eol:¬
-set list
-
-" Ignore some extensions
-set wildignore=*.class,*.zip,*.gif,*.pyc,*.swp,*.tar.*,*.pdf,node_modules/**,.git/**
-
-" COLOR SCHEME
-if (has("termguicolors"))
- set termguicolors
- set t_Co=256
-endif
-
+" Theme and font
 colorscheme dracula
-" colorscheme monokai
-" colorscheme molokai
+set termguicolors
 
-" colorscheme gruvbox
-" set background=dark
-
-
-" Conceal
-set conceallevel=0
-let g:vim_markdown_conceal=0
-
-" ENCODING
-set encoding=UTF-8
+" Airline
+let g:airline_theme='minimalist'
 let g:airline_powerline_fonts = 1
-
-" Displaying messages
-set shortmess+=c
-
-" COMMAND LINE
-" Enhanced command line completion
-set wildmenu
-
-" FILE NUMBERS
-" Enable relative and absolute file numbers
-set number relativenumber
-
-" WRAP
-" Stop wrapping long lines
-set nowrap
-
-" AUTORELOAD
-" Automatically reload buffers when file changes
-set autoread
-
-" Show preview
-set inccommand=split
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#whitespace#enabled = 1
+let g:airline#extensions#hunks#non_zero_only = 1
 
 " Bind <F3> to clear search history "
 map <F3> *:let @/=""
@@ -207,19 +131,31 @@ map <F3> *:let @/=""
 """"""""""""""""""""""""""""""""""""""
 let g:qs_highlight_on_keys = ['f', 'F']
 
+""""""""""""""""""""""""""""""""""""""
+" css3
+""""""""""""""""""""""""""""""""""""""
+augroup VimCSS3Syntax
+  autocmd!
+
+  autocmd FileType css setlocal iskeyword+=-
+augroup END
 
 """"""""""""""""""""""""""""""""""""""
-" Vim Instant Markdown
+" close-tag
 """"""""""""""""""""""""""""""""""""""
-filetype plugin on
-let g:instant_markdown_slow = 1
-
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml, *.tsx'
 
 """"""""""""""""""""""""""""""""""""""
 " NERD Commenter
 """"""""""""""""""""""""""""""""""""""
+filetype plugin on
 let g:NERDSpaceDelims = 1
+let g:NERDDefaultAlign = 'left'
+map cc <Plug>NERDCommenterInvert
+
+" Indentline
+let g:identLine_enabled=1
+nnoremap <c-k> :IndentLinesToggle<CR>
 
 """"""""""""""""""""""""""""""""""""""
 " COC
@@ -233,7 +169,6 @@ let g:coc_global_extensions = [
   \ 'coc-css',
   \ 'coc-json'
   \ ]
-
 
 if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
   let g:coc_global_extensions += ['coc-prettier']
@@ -316,27 +251,17 @@ nnoremap <leader>T :Tags<CR>
 """"""""""""""""""""""""""""""""""""""
 nnoremap <leader>m :NERDTreeFind<cr>
 nnoremap <leader>n :NERDTreeToggle<cr>
-
-" Automaticaly close nvim if NERDTree is only thing left open
-" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-let g:NERDTreeIgnore = ['^node_modules$', '\.git$', '\.vscode$']
-let g:NERDTreeAutoDeleteBuffer = 1
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
-let g:NERDTreeWinSize= 40
-
 let NERDTreeShowHidden = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
-let g:NERDTreeColorMapCustom = {
-    \ "Modified"  : "#528AB3",
-    \ "Staged"    : "#538B54",
-    \ "Untracked" : "#BE5849",
-    \ "Dirty"     : "#299999",
-    \ "Clean"     : "#87939A",
-    \ "Ignored"   : "#808080"
-    \ }
+let NERDTreeIgnore = ['\.git$', '\.vscode$']
+let NERDTreeStatusline = ''
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+let g:NERDTreeAutoDeleteBuffer = 1
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+let g:NERDTreeWinSize= 30
 
 """"""""""""""""""""""""""""""""""""""
 " Custom Commands
@@ -350,6 +275,8 @@ nnoremap <leader>cr :CocRestart<cr>
 nnoremap <C-T> :bnext<CR>
 nnoremap <C-B> :bprev<CR>
 
-nnoremap <C-Q> :bdelete<CR>
-
 map <C-s> :w<CR>
+
+nnoremap w :write<CR>
+nnoremap <C-Q> :bdelete<CR>
+nnoremap <M-d> :PlugInstall<CR>
