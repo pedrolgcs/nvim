@@ -17,7 +17,6 @@ set number
 set relativenumber
 set lazyredraw
 set nocursorline
-set scrolloff=4
 set colorcolumn=80
 set hlsearch
 set ignorecase
@@ -49,6 +48,12 @@ set wildignore=*.class,*.zip,*.gif,*.pyc,*.swp,*.tar.*,*.pdf,node_modules/**,.gi
 let g:python_host_prog = "/usr/bin/python2"
 let g:python3_host_prog = "/usr/bin/python3"
 
+if empty(glob('~/.config/nvim/autoload/plug.vim'))
+  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall
+endif
+
 " --------------- Vim-Plug ---------------
 call plug#begin('~/.config/nvim/bundle')
 
@@ -56,11 +61,11 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'mattn/emmet-vim'
   Plug 'jiangmiao/auto-pairs'
   Plug 'Yggdroot/indentLine'
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
   " File explorer
   Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle'  }
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
 
   " interfaces
@@ -71,12 +76,12 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'ryanoasis/vim-devicons'
 
   " languages
-  Plug 'sheerun/vim-polyglot'
-  Plug 'editorconfig/editorconfig-vim'
+  Plug 'yuezk/vim-js'
+  Plug 'HerringtonDarkholme/yats.vim'
+  Plug 'maxmellon/vim-jsx-pretty'
 
   " utils
   Plug 'terryma/vim-multiple-cursors'
-  Plug 'ap/vim-css-color'
   Plug 'unblevable/quick-scope'
   Plug 'alvan/vim-closetag'
   Plug 'MattesGroeger/vim-bookmarks'
@@ -86,11 +91,8 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'Shougo/echodoc.vim'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'ap/vim-buftabline'
-  Plug 'honza/vim-snippets'
-  Plug 'tpope/vim-repeat'
   Plug 'christoomey/vim-sort-motion'
   Plug 'christoomey/vim-system-copy'
-  Plug 'vim-test/vim-test'
   Plug 'cometsong/CommentFrame.vim'
   Plug 'AndrewRadev/splitjoin.vim'
 
@@ -104,14 +106,7 @@ call plug#end()
 " Make Ag search from your project root
 let g:ag_working_path_mode="r"
 
-" Correct comment highlight
-autocmd FileType json syntax match Comment +\/\/.\+$+
-
-" Highlight from start of file for TS and JS buffers
-autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
-autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
-
-" Theme and font
+" Theme
 colorscheme dracula
 set termguicolors
 
@@ -132,18 +127,9 @@ map <F3> *:let @/=""
 let g:qs_highlight_on_keys = ['f', 'F']
 
 """"""""""""""""""""""""""""""""""""""
-" css3
-""""""""""""""""""""""""""""""""""""""
-augroup VimCSS3Syntax
-  autocmd!
-
-  autocmd FileType css setlocal iskeyword+=-
-augroup END
-
-""""""""""""""""""""""""""""""""""""""
 " close-tag
 """"""""""""""""""""""""""""""""""""""
-let g:closetag_filenames = '*.html,*.xhtml,*.phtml, *.tsx'
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml, *.tsx, *.jsx'
 
 """"""""""""""""""""""""""""""""""""""
 " NERD Commenter
@@ -167,16 +153,11 @@ let g:coc_global_extensions = [
   \ 'coc-cspell-dicts',
   \ 'coc-pairs',
   \ 'coc-css',
-  \ 'coc-json'
+  \ 'coc-html',
+  \ 'coc-json',
+  \ 'coc-prettier',
+  \ 'coc-eslint'
   \ ]
-
-if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
-  let g:coc_global_extensions += ['coc-prettier']
-endif
-
-if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
-  let g:coc_global_extensions += ['coc-eslint']
-endif
 
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -210,7 +191,6 @@ function! s:check_back_space() abort
 endfunction
 
 " Coc Spell checker
-vmap <leader>a <Plug>(coc-codeaction-selected)
 nmap <leader>a <Plug>(coc-codeaction-selected)
 
 """"""""""""""""""""""""""""""""""""""
@@ -233,14 +213,10 @@ if exists('g:loaded_webdevicons')
 endif
 
 """"""""""""""""""""""""""""""""""""""
-" AirLine
-""""""""""""""""""""""""""""""""""""""
-let g:airline_powerline_fonts = 1
-
-""""""""""""""""""""""""""""""""""""""
 " Plugin fuzzy finder - fzf
 """"""""""""""""""""""""""""""""""""""
-let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -l -g ""'
+" let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -l -g ""'
+let $FZF_DEFAULT_COMMAND = 'ag --hidden -p ~/.config/nvim/config/fzf/.gitignore -g ""'
 nnoremap <c-P> :Files<cr>
 nnoremap <c-F> :Ag<cr>
 nnoremap <leader>t :BTags<CR>
@@ -254,31 +230,14 @@ nnoremap <leader>n :NERDTreeToggle<cr>
 let NERDTreeShowHidden = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
-let NERDTreeIgnore = ['\.git$', '\.vscode$']
+let NERDTreeIgnore = ['^node_modules$', '\.git$', '\.vscode$']
 let NERDTreeStatusline = ''
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 let g:NERDTreeAutoDeleteBuffer = 1
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
-let g:NERDTreeWinSize= 30
-
-
-""""""""""""""""""""""""""""""""""""""
-" Vim-teste
-""""""""""""""""""""""""""""""""""""""
-nmap <silent> <leader>tn :w<CR>:TestNearest<CR>
-nmap <silent> <leader>tf :w<CR>:TestFile<CR>
-nmap <silent> <leader>ts :w<CR>:TestSuite<CR>
-nmap <silent> <leader>tl :w<CR>:TestLast<CR>
-nmap <silent> <leader>tv :w<CR>:TestVisit<CR>
-if has('nvim')
-  let test#strategy = "neovim"
-  let test#neovim#term_position = "belowright"
-else
-  let test#strategy = "vimterminal"
-  let test#vim#term_position = "belowright"
-endif
+let g:NERDTreeWinSize= 40
 
 """"""""""""""""""""""""""""""""""""""
 " Custom Commands
@@ -292,8 +251,9 @@ nnoremap <leader>cr :CocRestart<cr>
 nnoremap <C-T> :bnext<CR>
 nnoremap <C-B> :bprev<CR>
 
+" save file
 map <C-s> :w<CR>
 
-nnoremap w :write<CR>
+" close file
 nnoremap <C-Q> :bdelete<CR>
-nnoremap <M-d> :PlugInstall<CR>
+
