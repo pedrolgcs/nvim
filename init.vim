@@ -73,7 +73,6 @@ call plug#begin('~/.config/nvim/bundle')
   " languages
   Plug 'sheerun/vim-polyglot'
   Plug 'editorconfig/editorconfig-vim'
-  Plug 'hail2u/vim-css3-syntax'
 
   " utils
   Plug 'terryma/vim-multiple-cursors'
