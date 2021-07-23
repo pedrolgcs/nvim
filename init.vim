@@ -141,6 +141,7 @@ map cc <Plug>NERDCommenterInvert
 
 " Indentline
 let g:identLine_enabled=1
+autocmd Filetype json let g:indentLine_enabled = 0
 nnoremap <c-k> :IndentLinesToggle<CR>
 
 """"""""""""""""""""""""""""""""""""""
@@ -199,7 +200,6 @@ nmap <leader>a <Plug>(coc-codeaction-selected)
 let g:indentLine_color_gui = '#80ffea'
 let g:indentLine_char_list = ['⎸']
 let g:indentLine_enabled = 1
-let g:vim_json_syntax_conceal = 0
 
 """"""""""""""""""""""""""""""""""""""
 " DevIcons
