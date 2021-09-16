@@ -93,8 +93,8 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'ap/vim-buftabline'
   Plug 'christoomey/vim-sort-motion'
   Plug 'christoomey/vim-system-copy'
-  Plug 'cometsong/CommentFrame.vim'
   Plug 'AndrewRadev/splitjoin.vim'
+  Plug 'easymotion/vim-easymotion'
 
   " git
   Plug 'airblade/vim-gitgutter'
@@ -255,5 +255,8 @@ nnoremap <C-B> :bprev<CR>
 map <C-s> :w<CR>
 
 " close file
-nnoremap <C-Q> :bdelete<CR>
+map <C-Q> :bdelete<CR>
 
+" easymotion
+map <Leader>w <Plug>(easymotion-bd-w)
+map <Leader>L <Plug>(easymotion-bd-jk)

@@ -1,3 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =1
+let g:netrw_dirhistcnt =7
+let g:netrw_dirhist_7='/home/peter/www/rocketseat/ignite/react/classes/ignews/src/pages'
+let g:netrw_dirhist_6='/home/peter/www/rocketseat/ignite/react/classes/ignews/src'
+let g:netrw_dirhist_5='/home/peter/www/rocketseat/ignite/react/classes/ignews'
+let g:netrw_dirhist_4='/home/peter/www/rocketseat/ignite/react/classes/ignews/src/pages'
+let g:netrw_dirhist_3='/home/peter/www/rocketseat/ignite/react/classes/ignews/src'
+let g:netrw_dirhist_2='/home/peter/www/rocketseat/ignite/react/classes/ignews'
 let g:netrw_dirhist_1='/home/peter/.tmux/plugins/tmux'
