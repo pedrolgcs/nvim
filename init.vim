@@ -39,7 +39,6 @@ set incsearch
 set nowrap
 set autoread
 set foldmethod=indent   
-set foldnestmax=10
 set nofoldenable
 set foldlevel=2
 set list
@@ -117,9 +116,6 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#whitespace#enabled = 1
 let g:airline#extensions#hunks#non_zero_only = 1
-
-" Bind <F3> to clear search history "
-map <F3> *:let @/=""
 
 """"""""""""""""""""""""""""""""""""""
 " quick-scope
@@ -256,6 +252,9 @@ map <C-s> :w<CR>
 
 " close file
 map <C-Q> :bdelete<CR>
+
+" Bind <F3> to clear search history "
+map <F3> *:let @/=""
 
 " easymotion
 map <Leader>w <Plug>(easymotion-bd-w)

@@ -15,6 +15,7 @@
   ],
   "coc.preferences.formatOnType": true,
   "coc.preferences.colorSupport": true,
+  
   "tsserver.formatOnType": true,
   "tsserver.enableJavascript": true,
 
