@@ -259,3 +259,6 @@ map <F3> *:let @/=""
 " easymotion
 map <Leader>w <Plug>(easymotion-bd-w)
 map <Leader>L <Plug>(easymotion-bd-jk)
+
+noremap <Leader>y "+y
+noremap <Leader>p "+p
