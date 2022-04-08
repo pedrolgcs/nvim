@@ -75,9 +75,7 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'ryanoasis/vim-devicons'
 
   " languages
-  Plug 'yuezk/vim-js'
-  Plug 'HerringtonDarkholme/yats.vim'
-  Plug 'maxmellon/vim-jsx-pretty'
+  Plug 'sheerun/vim-polyglot'
 
   " utils
   Plug 'terryma/vim-multiple-cursors'
@@ -149,9 +147,7 @@ let g:coc_global_extensions = [
   \ 'coc-spell-checker',
   \ 'coc-cspell-dicts',
   \ 'coc-pairs',
-  \ 'coc-css',
-  \ 'coc-html',
-  \ 'coc-json',
+  \ 'coc-css',  
   \ 'coc-prettier',
   \ 'coc-eslint'
   \ ]
