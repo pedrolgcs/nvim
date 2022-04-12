@@ -5,44 +5,49 @@
 let mapleader="\<space>"
 
 " --------------- Basic Setup ---------------
-syntax on
-syntax enable
-set guicursor=n:blinkon1
-filetype plugin indent on
-set nocompatible
-set t_ut=
-set confirm
-set title
+
+" Options
+set background=dark
+set clipboard=unnamedplus
+set completeopt=noinsert,menuone,noselect
+set hidden
+set inccommand=split
+set mouse=a
 set number
 set relativenumber
-set lazyredraw
-set nocursorline
-set colorcolumn=80
-set hlsearch
-set ignorecase
-set smartcase
-set autoindent
-set encoding=UTF-8
-set smartindent
-set expandtab
-set softtabstop=2
-set shiftwidth=2
-set shiftround
-set hidden
-set nobackup
-set nowritebackup
-set noswapfile
+set splitbelow splitright
+set title
+set ttimeoutlen=0
 set wildmenu
-set shortmess+=c
-set wildmode=list:longest
-set incsearch
-set nowrap
-set autoread
-set foldmethod=indent   
-set nofoldenable
-set foldlevel=2
-set list
+set switchbuf=usetab
+set guicursor=n:blinkon1
 set wildignore=*.class,*.zip,*.gif,*.pyc,*.swp,*.tar.*,*.pdf,node_modules/**,.git/**
+set t_Co=256
+
+" Tabs size
+set expandtab
+set shiftwidth=2
+set tabstop=2
+
+" Syntax
+filetype plugin indent on
+syntax on
+
+" Italics
+let &t_ZH="\e[3m"
+let &t_ZR="\e[23m"
+
+" True color if available
+let term_program=$TERM_PROGRAM
+
+" Check for conflicts with Apple Terminal app
+if term_program !=? 'Apple_Terminal'
+  set termguicolors
+else
+  if $TERM !=? 'xterm-256color'
+    set termguicolors
+    endif
+endif
 
 let g:python_host_prog = "/usr/bin/python2"
 let g:python3_host_prog = "/usr/bin/python3"
@@ -57,13 +62,12 @@ endif
 call plug#begin('~/.config/nvim/bundle')
 
   " autocomplete
-  Plug 'mattn/emmet-vim'
   Plug 'jiangmiao/auto-pairs'
   Plug 'Yggdroot/indentLine'
-  Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+  Plug 'neoclide/coc.nvim',  {'branch': 'master', 'do': 'yarn install'}
 
   " File explorer
-  Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle'  }
+  Plug 'preservim/nerdtree'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
 
@@ -71,27 +75,21 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'dracula/vim', { 'as': 'dracula' }
-  Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
   Plug 'ryanoasis/vim-devicons'
 
   " languages
   Plug 'sheerun/vim-polyglot'
+  Plug 'plasticboy/vim-markdown'
 
   " utils
   Plug 'terryma/vim-multiple-cursors'
   Plug 'unblevable/quick-scope'
   Plug 'alvan/vim-closetag'
-  Plug 'MattesGroeger/vim-bookmarks'
   Plug 'scrooloose/nerdcommenter'
-  Plug 'jeffkreeftmeijer/vim-numbertoggle'
   Plug 'tpope/vim-surround'
-  Plug 'Shougo/echodoc.vim'
   Plug 'editorconfig/editorconfig-vim'
-  Plug 'ap/vim-buftabline'
-  Plug 'christoomey/vim-sort-motion'
-  Plug 'christoomey/vim-system-copy'
-  Plug 'AndrewRadev/splitjoin.vim'
   Plug 'easymotion/vim-easymotion'
+  Plug 'ap/vim-css-color'
 
   " git
   Plug 'airblade/vim-gitgutter'
@@ -147,6 +145,7 @@ let g:coc_global_extensions = [
   \ 'coc-spell-checker',
   \ 'coc-cspell-dicts',
   \ 'coc-pairs',
+  \ 'coc-emmet',
   \ 'coc-css',  
   \ 'coc-prettier',
   \ 'coc-eslint'
@@ -232,16 +231,32 @@ let g:NERDTreeDirArrowCollapsible = '▾'
 let g:NERDTreeWinSize= 40
 
 """"""""""""""""""""""""""""""""""""""
+" Markdown
+""""""""""""""""""""""""""""""""""""""
+let g:tex_conceal = ''
+let g:vim_markdown_math = 1
+
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_conceal = 0
+let g:vim_markdown_fenced_languages = ['tsx=typescriptreact']
+
+""""""""""""""""""""""""""""""""""""""
 " Custom Commands
 """"""""""""""""""""""""""""""""""""""
 nnoremap <leader>ev :vsplit ~/.config/nvim/init.vim<cr>
 nnoremap <leader>vs :source ~/.config/nvim/init.vim<cr>
 
+" terminal
+nnoremap <F6> :sp<CR>:terminal<CR>
+
+" coc
 nnoremap <leader>cr :CocRestart<cr>
 
-" change tab
-nnoremap <C-T> :bnext<CR>
-nnoremap <C-B> :bprev<CR>
+" Tabs
+nnoremap <S-Tab> :bnext<CR>
+" nnoremap <Tab> :bnext<CR>
+nnoremap <silent> <S-t> :tabnew<CR>
 
 " save file
 map <C-s> :w<CR>
@@ -255,6 +270,3 @@ map <F3> *:let @/=""
 " easymotion
 map <Leader>w <Plug>(easymotion-bd-w)
 map <Leader>L <Plug>(easymotion-bd-jk)
-
-noremap <Leader>y "+y
-noremap <Leader>p "+p
