@@ -37,18 +37,6 @@ syntax on
 let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"
 
-" True color if available
-let term_program=$TERM_PROGRAM
-
-" Check for conflicts with Apple Terminal app
-if term_program !=? 'Apple_Terminal'
-  set termguicolors
-else
-  if $TERM !=? 'xterm-256color'
-    set termguicolors
-    endif
-endif
-
 let g:python_host_prog = "/usr/bin/python2"
 let g:python3_host_prog = "/usr/bin/python3"
 
