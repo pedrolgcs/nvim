@@ -17,6 +17,7 @@ set number
 set relativenumber
 set splitbelow splitright
 set title
+set titlestring=VIM:\ %-25.55F\ %a%r%m titlelen=70
 set ttimeoutlen=0
 set wildmenu
 set switchbuf=usetab
@@ -94,12 +95,9 @@ colorscheme dracula
 set termguicolors
 
 " Airline
-let g:airline_theme='minimalist'
+let g:airline_theme='bubblegum'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#whitespace#enabled = 1
-let g:airline#extensions#hunks#non_zero_only = 1
 
 """"""""""""""""""""""""""""""""""""""
 " quick-scope
