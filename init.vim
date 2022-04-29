@@ -53,7 +53,7 @@ call plug#begin('~/.config/nvim/bundle')
   " autocomplete
   Plug 'jiangmiao/auto-pairs'
   Plug 'Yggdroot/indentLine'
-  Plug 'neoclide/coc.nvim',  {'branch': 'master', 'do': 'yarn install'}
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
   " File explorer
   Plug 'preservim/nerdtree'
