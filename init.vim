@@ -207,9 +207,8 @@ nnoremap <leader>n :NERDTreeToggle<cr>
 let NERDTreeShowHidden = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
-let NERDTreeIgnore = ['^node_modules$', '\.git$', '\.vscode$']
+" let NERDTreeIgnore = ['^node_modules$', '\.git$', '\.vscode$']
 let NERDTreeStatusline = ''
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 let g:NERDTreeAutoDeleteBuffer = 1
 let g:NERDTreeDirArrowExpandable = '▸'
