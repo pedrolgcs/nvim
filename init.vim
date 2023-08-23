@@ -68,7 +68,6 @@ call plug#begin('~/.config/nvim/bundle')
 
   " languages
   Plug 'sheerun/vim-polyglot'
-  Plug 'plasticboy/vim-markdown'
 
   " utils
   Plug 'terryma/vim-multiple-cursors'
@@ -76,9 +75,7 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'alvan/vim-closetag'
   Plug 'scrooloose/nerdcommenter'
   Plug 'tpope/vim-surround'
-  Plug 'editorconfig/editorconfig-vim'
   Plug 'easymotion/vim-easymotion'
-  Plug 'ap/vim-css-color'
 
   " git
   Plug 'airblade/vim-gitgutter'
@@ -127,7 +124,6 @@ nnoremap <c-k> :IndentLinesToggle<CR>
 """"""""""""""""""""""""""""""""""""""
 let g:coc_global_extensions = [
   \ 'coc-tsserver',
-  \ 'coc-styled-components',
   \ 'coc-spell-checker',
   \ 'coc-cspell-dicts',
   \ 'coc-pairs',
@@ -211,17 +207,6 @@ let g:NERDTreeAutoDeleteBuffer = 1
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 let g:NERDTreeWinSize= 40
-
-""""""""""""""""""""""""""""""""""""""
-" Markdown
-""""""""""""""""""""""""""""""""""""""
-let g:tex_conceal = ''
-let g:vim_markdown_math = 1
-
-let g:vim_markdown_folding_disabled = 1
-let g:vim_markdown_frontmatter = 1
-let g:vim_markdown_conceal = 0
-let g:vim_markdown_fenced_languages = ['tsx=typescriptreact']
 
 """"""""""""""""""""""""""""""""""""""
 " Custom Commands
