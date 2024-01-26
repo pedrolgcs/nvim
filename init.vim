@@ -65,6 +65,7 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'vim-airline/vim-airline-themes'
   Plug 'dracula/vim', { 'as': 'dracula' }
   Plug 'ryanoasis/vim-devicons'
+  Plug 'arcticicestudio/nord-vim'
 
   " languages
   Plug 'sheerun/vim-polyglot'
@@ -88,11 +89,11 @@ call plug#end()
 let g:ag_working_path_mode="r"
 
 " Theme
-colorscheme dracula
+colorscheme nord
 set termguicolors
 
 " Airline
-let g:airline_theme='bubblegum'
+let g:airline_theme='nord'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
@@ -129,7 +130,6 @@ let g:coc_global_extensions = [
   \ 'coc-pairs',
   \ 'coc-emmet',
   \ 'coc-css',  
-  \ 'coc-prettier',
   \ 'coc-eslint'
   \ ]
 
